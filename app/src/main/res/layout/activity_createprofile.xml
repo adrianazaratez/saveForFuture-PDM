@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen"
+    android:gravity="center"
+    android:padding="8dp"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/activity_createprofile_crearperfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Crear perfil"
+        android:gravity="center"
+        android:textSize="35sp"/>
+
+    <ImageView
+        android:id="@+id/activity_createprofile_image"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:paddingHorizontal="20dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/user"/>
+
+    <EditText
+        android:id="@+id/activity_createprofile_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre completo"
+        android:drawableLeft="@android:drawable/star_off"/>
+
+    <EditText
+        android:id="@+id/activity_createprofile_mail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Correo electronico"
+        android:drawableLeft="@android:drawable/sym_action_email"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/activity_createprofile_birth"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:hint="Fecha de nacimiento"
+            android:drawableLeft="@android:drawable/star_off"/>
+
+        <EditText
+            android:id="@+id/activity_createprofile_gender"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:hint="Género"
+            android:drawableLeft="@android:drawable/star_off"
+            android:layout_toRightOf="@id/activity_createprofile_birth"/>
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/activity_createprofile_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Usuario"
+        android:drawableLeft="@android:drawable/star_off"/>
+
+    <EditText
+        android:id="@+id/activity_createprofile_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contraseña"
+        android:drawableLeft="@android:drawable/ic_lock_idle_lock"/>
+
+    <EditText
+        android:id="@+id/activity_createprofile_checkpwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Confirmar contraseña"
+        android:drawableLeft="@android:drawable/ic_lock_idle_lock"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/activity_createprofile_arrow"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/arrow"
+            android:scaleType="centerInside"
+            android:background="@android:color/transparent"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

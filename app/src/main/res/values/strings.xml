@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">PiggyBank-Moviles</string>
+
+    <string-array name="goals">
+        <item>Comida</item>
+        <item>Transporte</item>
+        <item>Ropa</item>
+        <item>Casa</item>
+        <item>Entretenimiento</item>
+        <item>Salud</item>
+        <item>Cosméticos</item>
+        <item>Viajes</item>
+        <item>Otros</item>
+    </string-array>
 </resources>
