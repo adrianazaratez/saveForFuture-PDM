@@ -30,12 +30,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Cantidad"/>
-
-    <EditText
-        android:id="@+id/activity_newgoals_date"
+    
+    <CalendarView
+        android:id="@+id/acivity_newgoals_date"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Fecha"/>
+        android:layout_height="wrap_content">
+    </CalendarView>
 
     <Button
         android:id="@+id/activity_newgoals_button"

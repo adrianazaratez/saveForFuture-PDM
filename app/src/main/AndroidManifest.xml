@@ -16,6 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ActivityCategories" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ActivityCreateprofile" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ActivityInit" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ActivityMenu" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ActivityNewgoal" android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

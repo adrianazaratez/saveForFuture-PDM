@@ -51,6 +51,7 @@
         android:layout_marginBottom="5dp"/>
 
     <Button
+        android:id="@+id/activity_main_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Iniciar sesión"
