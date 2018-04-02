@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/AppTheme"
+    android:gravity="center"
+    android:padding="8dp"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/activity_categories_linear1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/activity_menu_gastos"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/gastos"
+            android:background="@android:color/transparent"
+            android:layout_margin="3dp"
+            android:scaleType="fitXY"/>
+
+        <ImageButton
+            android:id="@+id/activity_menu_metas"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/metas"
+            android:background="@android:color/transparent"
+            android:layout_margin="3dp"
+            android:scaleType="fitXY"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/activity_categories_linear2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/activity_menu_ingresos"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ingresos"
+            android:background="@android:color/transparent"
+            android:layout_margin="3dp"
+            android:scaleType="fitXY"/>
+
+        <ImageButton
+            android:id="@+id/activity_menu_estadisticas"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/estadisticas"
+            android:background="@android:color/transparent"
+            android:layout_margin="3dp"
+            android:scaleType="fitXY"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/activity_categories_linear3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/activity_menu_reto"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/reto"
+            android:background="@android:color/transparent"
+            android:layout_margin="3dp"
+            android:scaleType="fitXY"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.example.adriana.piggybank_moviles"
+        applicationId "com.iteso.piggybank_moviles"
         minSdkVersion 23
         targetSdkVersion 26
         versionCode 1
