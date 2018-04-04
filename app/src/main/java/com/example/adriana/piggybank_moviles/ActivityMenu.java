@@ -55,7 +55,7 @@ public class ActivityMenu extends AppCompatActivity {
         estadisticas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivityMenu.this,ActivityCreateprofile.class);
+                Intent intent = new Intent(ActivityMenu.this,ActivityEstadisticas.class);
                 startActivity(intent);
                 finish();
             }

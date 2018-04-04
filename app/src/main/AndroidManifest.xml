@@ -28,14 +28,17 @@
             android:name=".ActivityInit"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ActivityMenu"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".ActivityMenu"/>
         <activity
             android:name=".ActivityNewgoal"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ActivityRetoDia" />
         <activity android:name=".ActivityIngresos" />
-        <activity android:name=".ActivityEstadisticas"></activity>
+        <activity android:name=".ActivityEstadisticas" />
+        <activity android:name=".ActivityNuevoGasto" />
+        <activity
+            android:name=".ActivitySplashScreen"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

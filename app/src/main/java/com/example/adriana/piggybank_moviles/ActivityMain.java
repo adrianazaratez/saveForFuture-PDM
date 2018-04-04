@@ -11,8 +11,8 @@ import android.widget.TextView;
 public class ActivityMain extends AppCompatActivity {
 
     EditText usuario,contrasena;
-    TextView crearperfil,olvidecontrasena;
-    Button iniciarSesion;
+    TextView olvidecontrasena;
+    Button crearperfil, iniciarSesion;
 
 
     @Override
@@ -29,7 +29,7 @@ public class ActivityMain extends AppCompatActivity {
         crearperfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivityMain.this,ActivityCreateprofile.class);
+                Intent intent = new Intent(ActivityMain.this,ActivitySplashScreen.class);
                 startActivity(intent);
                 finish();
             }
