@@ -37,7 +37,7 @@ public class ActivityMenu extends AppCompatActivity {
         metas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivityMenu.this,ActivityCreateprofile.class);
+                Intent intent = new Intent(ActivityMenu.this,ActivityMetas.class);
                 startActivity(intent);
                 finish();
             }

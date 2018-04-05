@@ -23,9 +23,7 @@
         <activity
             android:name=".ActivityCreateprofile"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ActivityGastos"
-            />
+        <activity android:name=".ActivityGastos" />
         <activity
             android:name=".ActivityInit"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -42,6 +40,8 @@
         <activity
             android:name=".ActivitySplashScreen"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ActivityMetas" />
+        <activity android:name=".itemMeta"></activity>
     </application>
 
 </manifest>
