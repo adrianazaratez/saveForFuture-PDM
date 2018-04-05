@@ -9,13 +9,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivityMain" android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name=".ActivityMain"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ActivityCategories"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityCreateprofile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityInit"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityMenu"/>
+        <activity
+            android:name=".ActivityNewgoal"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ActivityRetoDia" />
+        <activity android:name=".ActivityIngresos" />
+        <activity android:name=".ActivityEstadisticas" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ActivityNuevoGasto" />
+        <activity
+            android:name=".ActivitySplashScreen"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

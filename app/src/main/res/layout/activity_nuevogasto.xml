@@ -1,46 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/AppTheme"
     android:gravity="top"
-    android:paddingHorizontal="40dp"
-    android:paddingTop="20dp"
+    android:paddingHorizontal="8dp"
+    android:padding="50dp"
     android:background="#FFFFFF"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.example.adriana.piggybank_moviles.ActivityNuevoGasto">
 
     <Spinner
-        android:id="@+id/activity_newgoals_type"
+        android:id="@+id/activity_nuevogasto_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/goals"
-        android:tag="Tipo de Meta"
         android:layout_marginBottom="10dp">
     </Spinner>
 
     <EditText
-        android:id="@+id/activity_newgoals_name"
+        android:id="@+id/activity_nuevogasto_cantidad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nombre"/>
-
-    <EditText
-        android:id="@+id/activity_newgoals_quantity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Cantidad"/>
-
-    <CalendarView
-        android:id="@+id/acivity_newgoals_date"
-        android:layout_width="match_parent"
-        android:layout_height="310dp"></CalendarView>
+        android:hint="Cantidad $"/>
 
     <Button
-        android:id="@+id/activity_newgoals_button"
+        android:id="@+id/activity_nuevogasto_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="60dp"
         android:text="OK"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/money"/>
 
 </LinearLayout>
