@@ -30,7 +30,7 @@ public class ActivityMenu extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityMenu.this,ActivityGastos.class);
                 startActivity(intent);
-                finish();
+                //finish();
             }
         });
 
@@ -39,7 +39,7 @@ public class ActivityMenu extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityMenu.this,ActivityMetas.class);
                 startActivity(intent);
-                finish();
+               // finish();
             }
         });
 
@@ -48,7 +48,7 @@ public class ActivityMenu extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityMenu.this,ActivityIngresos.class);
                 startActivity(intent);
-                finish();
+               // finish();
             }
         });
 
@@ -57,7 +57,7 @@ public class ActivityMenu extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityMenu.this,ActivityEstadisticas.class);
                 startActivity(intent);
-                finish();
+               // finish();
             }
         });
 
@@ -66,7 +66,7 @@ public class ActivityMenu extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityMenu.this,ActivityRetoDia.class);
                 startActivity(intent);
-                finish();
+               // finish();
             }
         });
 
