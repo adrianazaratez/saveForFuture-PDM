@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">PiggyBank-Moviles</string>
+    <string name="action_settings">Settings</string>
+    <string name="gastosTitle">Gastos</string>
+    <string name="title_section1">HOY</string>
+    <string name="title_section2">SEMANA</string>
+    <string name="title_section3">MES</string>
 
     <string-array name="goals">
         <item>Comida</item>
@@ -12,4 +17,10 @@
         <item>Viajes</item>
         <item>Otros</item>
     </string-array>
+
+    <string name="weekFragment">Gastos semana</string>
+    <string name="monthFragment">Gastos mes</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

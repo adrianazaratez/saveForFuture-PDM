@@ -28,7 +28,7 @@ public class ActivityMenu extends AppCompatActivity {
         gastos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivityMenu.this,ActivityCreateprofile.class);
+                Intent intent = new Intent(ActivityMenu.this,ActivityGastos.class);
                 startActivity(intent);
                 finish();
             }
