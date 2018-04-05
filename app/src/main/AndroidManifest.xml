@@ -34,7 +34,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ActivityRetoDia" />
         <activity android:name=".ActivityIngresos" />
-        <activity android:name=".ActivityEstadisticas" />
+        <activity android:name=".ActivityEstadisticas" android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ActivityNuevoGasto" />
         <activity
             android:name=".ActivitySplashScreen"
