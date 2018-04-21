@@ -6,21 +6,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/AppTheme"
-    android:gravity="top"
+    android:gravity="top|center"
     android:paddingHorizontal="8dp"
     android:padding="50dp"
     android:background="#FFFFFF"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context="com.example.adriana.piggybank_moviles.ActivityNuevoGasto">
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="NUEVO GASTO"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:layout_marginBottom="10dp"/>
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:text="NUEVO GASTO"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"/>
 
     <Spinner
         android:id="@+id/activity_nuevogasto_spinner"
@@ -42,6 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="60dp"
         android:text="OK"/>
+
+    </LinearLayout>
 
     <ImageView
         android:layout_width="wrap_content"

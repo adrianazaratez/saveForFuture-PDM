@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.adriana.piggybank_moviles.ActivityMenu">
+    <item
+        android:id="@+id/action_settings_logout"
+        android:orderInCategory="100"
+        android:title="CERRAR SESIÓN"
+        app:showAsAction="collapseActionView" />
+</menu>

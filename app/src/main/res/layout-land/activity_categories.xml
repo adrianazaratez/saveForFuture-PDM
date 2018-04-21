@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="8dp"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Selecciona las categorías en las que se concentran tus gastos..."
+        android:textSize="30sp"
+        android:textAlignment="center"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/activity_categories_linear1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/activity_categories_transport"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/transport"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"/>
+
+                <ImageButton
+                    android:id="@+id/activity_categories_clothing"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/clothing"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"/>
+
+                <ImageButton
+                    android:id="@+id/activity_categories_health"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/health"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/activity_categories_linear2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <ImageButton
+                    android:id="@+id/activity_categories_entertainment"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/entertainment"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"/>
+
+                <ImageButton
+                    android:id="@+id/activity_categories_food"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/food"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"/>
+
+                <ImageButton
+                    android:id="@+id/activity_categories_home"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/home"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/activity_categories_linear3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/activity_categories_other"
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/other"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"/>
+
+                <ImageButton
+                    android:id="@+id/activity_categories_next"
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/arrow"
+                    android:scaleType="centerInside"
+                    android:background="@android:color/transparent"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

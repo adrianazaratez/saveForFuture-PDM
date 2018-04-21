@@ -15,13 +15,25 @@
         android:gravity="center"
         android:textSize="35sp"/>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
     <ImageView
         android:id="@+id/activity_createprofile_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:paddingHorizontal="20dp"
         android:scaleType="fitCenter"
         android:src="@drawable/user"/>
+
+
 
     <EditText
         android:id="@+id/activity_createprofile_name"
@@ -93,5 +105,9 @@
             android:layout_alignParentRight="true"/>
 
     </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
