@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "119522123886",
+    "firebase_url": "https://fir-saveforfuture.firebaseio.com",
+    "project_id": "fir-saveforfuture",
+    "storage_bucket": "fir-saveforfuture.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119522123886:android:b6cbd70e7fdac0ec",
+        "android_client_info": {
+          "package_name": "com.example.adriana.piggybank_moviles"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "119522123886-lnmb1p2rdlan0of9bgguajhppa98e83i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.adriana.piggybank_moviles",
+            "certificate_hash": "61a8ab8a8d06ecd9ad31724b0349ff0ddc7ac06a"
+          }
+        },
+        {
+          "client_id": "119522123886-ktsdmij2jce9ckq6ibfr1kkm9k8jtq2m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMoR_rg_5sGOqsnh6nqKBEScfDQZdvoew"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "119522123886-ktsdmij2jce9ckq6ibfr1kkm9k8jtq2m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
