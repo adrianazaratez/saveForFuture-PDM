@@ -13,7 +13,7 @@ import android.widget.ImageButton;
 public class ActivityMenu extends AppCompatActivity {
 
     ImageButton gastos, metas, ingresos, estadisticas, retoDia;
-
+    String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,10 +25,13 @@ public class ActivityMenu extends AppCompatActivity {
         estadisticas = findViewById(R.id.activity_menu_estadisticas);
         retoDia = findViewById(R.id.activity_menu_reto);
 
+        id = getIntent().getExtras().getString("ID");
+
         gastos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityMenu.this,ActivityGastos.class);
+                intent.putExtra("ID",id);
                 startActivity(intent);
                 //finish();
             }
@@ -38,6 +41,7 @@ public class ActivityMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityMenu.this,ActivityMetas.class);
+                intent.putExtra("ID",id);
                 startActivity(intent);
                // finish();
             }

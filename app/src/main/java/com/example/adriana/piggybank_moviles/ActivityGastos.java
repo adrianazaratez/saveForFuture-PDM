@@ -41,6 +41,7 @@ public class ActivityGastos extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,8 @@ public class ActivityGastos extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
       //  setSupportActionBar(toolbar);
+
+        id = getIntent().getExtras().getString("ID");
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -84,7 +87,7 @@ public class ActivityGastos extends AppCompatActivity {
             switch (position){
                 case 0:
                     if( fragmentGastosToday== null){
-                        fragmentGastosToday = new FragmentGastosToday();
+                        fragmentGastosToday = new FragmentGastosToday(id);
                     }
                     return fragmentGastosToday;
                 case 1:

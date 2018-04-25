@@ -14,13 +14,13 @@ public class Movimiento implements Parcelable {
     String id;
     String tipo;
     String fecha;
-    String monto;
+    Long monto;
     HashMap<String,Boolean> categoria;
 
     public Movimiento() {
     }
 
-    public Movimiento(String id, String tipo, String fecha, String monto, HashMap<String, Boolean> categoria) {
+    public Movimiento(String id, String tipo, String fecha, Long monto, HashMap<String, Boolean> categoria) {
         this.id = id;
         this.tipo = tipo;
         this.fecha = fecha;
@@ -34,7 +34,7 @@ public class Movimiento implements Parcelable {
                 "id='" + id + '\'' +
                 ", tipo='" + tipo + '\'' +
                 ", fecha='" + fecha + '\'' +
-                ", monto='" + monto + '\'' +
+                ", monto=" + monto +
                 ", categoria=" + categoria +
                 '}';
     }
@@ -63,11 +63,11 @@ public class Movimiento implements Parcelable {
         this.fecha = fecha;
     }
 
-    public String getMonto() {
+    public Long getMonto() {
         return monto;
     }
 
-    public void setMonto(String monto) {
+    public void setMonto(Long monto) {
         this.monto = monto;
     }
 
@@ -90,7 +90,7 @@ public class Movimiento implements Parcelable {
         dest.writeString(this.id);
         dest.writeString(this.tipo);
         dest.writeString(this.fecha);
-        dest.writeString(this.monto);
+        dest.writeValue(this.monto);
         dest.writeSerializable(this.categoria);
     }
 
@@ -98,7 +98,7 @@ public class Movimiento implements Parcelable {
         this.id = in.readString();
         this.tipo = in.readString();
         this.fecha = in.readString();
-        this.monto = in.readString();
+        this.monto = (Long) in.readValue(Long.class.getClassLoader());
         this.categoria = (HashMap<String, Boolean>) in.readSerializable();
     }
 
