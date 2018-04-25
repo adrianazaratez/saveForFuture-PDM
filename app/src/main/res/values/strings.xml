@@ -6,6 +6,8 @@
     <string name="title_section2">SEMANA</string>
     <string name="title_section3">MES</string>
 
+    <string name="action_logOut">Log Out</string>
+
     <string-array name="goals">
         <item>Comida</item>
         <item>Transporte</item>
