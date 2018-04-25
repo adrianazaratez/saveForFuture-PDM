@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 
 public class AdapterGastos extends RecyclerView.Adapter<AdapterGastos.ViewHolder>{
-    private ArrayList<itemGasto> mDataSet;
+    private ArrayList<itemGasto> mDataSet = null;
     private Context context;
 
     public AdapterGastos(Context context, ArrayList<itemGasto> myDataSet) {

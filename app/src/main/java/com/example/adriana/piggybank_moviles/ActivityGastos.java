@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -54,7 +55,7 @@ public class ActivityGastos extends AppCompatActivity {
       //  setSupportActionBar(toolbar);
 
         id = getIntent().getExtras().getString("ID");
-
+        Log.e("ID",id);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
@@ -67,6 +68,7 @@ public class ActivityGastos extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ActivityGastos.this, ActivityNuevoGasto.class);
+                intent.putExtra("ID",id);
                 startActivity(intent);
             }
         });
@@ -94,16 +96,16 @@ public class ActivityGastos extends AppCompatActivity {
                     return fragmentGastosToday;
                 case 1:
                     if( fragmentGastosWeek== null){
-                        fragmentGastosWeek = new FragmentGastosWeek();
+                        fragmentGastosWeek = new FragmentGastosWeek(id);
                     }
                     return fragmentGastosWeek;
                 case 2:
                     if( fragmentGastosMonth== null){
-                        fragmentGastosMonth = new FragmentGastosMonth();
+                        fragmentGastosMonth = new FragmentGastosMonth(id);
                     }
                     return fragmentGastosMonth;
                 default:
-                    return new FragmentGastosToday();
+                    return new FragmentGastosToday(id);
 
             }
         }
