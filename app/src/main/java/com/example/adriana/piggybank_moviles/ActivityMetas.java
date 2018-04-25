@@ -11,7 +11,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.adriana.piggybank_moviles.beans.Categoria;
 import com.example.adriana.piggybank_moviles.beans.Meta;
@@ -41,24 +45,20 @@ public class ActivityMetas extends AppCompatActivity {
 
     ArrayList<Usuario> usersList = new ArrayList<>();
     ArrayList<String> fbUserIDList = new ArrayList<>();
-    HashMap<String,Boolean> meta;
+    HashMap<String,Boolean> meta= new HashMap<>();
     ArrayList<Meta> metasList = new ArrayList<>();
     ArrayList<String> fbmetaIDList = new ArrayList<>();
     ArrayList<Meta> metax = new ArrayList<>();
-    java.util.Date fecha;
-    String stringFecha;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_metas);
-
+        metas = new ArrayList<>();
+        id = getIntent().getExtras().getString("ID");
         mLayoutManager = new LinearLayoutManager(this);
-
-       recyclerView = findViewById(R.id.containerMetas);
-
-
-        fecha = new Date();
+        recyclerView = findViewById(R.id.containerMetas);
         Log.e("ID",id);
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -84,12 +84,6 @@ public class ActivityMetas extends AppCompatActivity {
                     fbmetaIDList.add(idfirebase);
                 }
 
-                for(DataSnapshot snapshot : dataSnapshot.child("categoria").getChildren()){
-                    Categoria value = snapshot.getValue(Categoria.class);
-                    idfirebase = snapshot.getKey();
-                    Log.e("FIREBASE", idfirebase+ " "+value.toString());
-                }
-
                 doThings();
             }
 
@@ -99,12 +93,6 @@ public class ActivityMetas extends AppCompatActivity {
             }
         });
 
-        metas = new ArrayList<itemMeta>();
-        metas.add(new itemMeta("Viaje a Colombia", "70%", 70));
-        metas.add(new itemMeta("iPhone X", "10%",10));
-
-        mAdapter = new AdapterMetas(this,metas);
-        recyclerView.setAdapter(mAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -117,6 +105,7 @@ public class ActivityMetas extends AppCompatActivity {
 
     }
     public void doThings() {
+
         for (int i = 0; i < fbUserIDList.size(); i++) {
             if (id.equals(fbUserIDList.get(i))) {
                 user = usersList.get(i);
@@ -125,6 +114,10 @@ public class ActivityMetas extends AppCompatActivity {
         }
 
         meta = user.getMeta();
+        if(meta == null){
+            Toast.makeText(this, "No tienes metas registradas", Toast.LENGTH_LONG).show();
+        }
+        else {
 
         for(Map.Entry<String,Boolean>entry : meta.entrySet()){
             String key = entry.getKey();
@@ -136,11 +129,30 @@ public class ActivityMetas extends AppCompatActivity {
             }
         }
 
-
-
+        for(int i = 0; i<metax.size(); i++){
+            metas.add(new itemMeta(metax.get(i).getNombre(),"70%", 70));
+        }}
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new AdapterMetas(this,metas);
+        recyclerView.setAdapter(mAdapter);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_logOut:
+                Intent intent2= new Intent(ActivityMetas.this,ActivityMain.class); startActivity(intent2);
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
 
