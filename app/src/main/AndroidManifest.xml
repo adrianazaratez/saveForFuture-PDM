@@ -41,7 +41,20 @@
             android:name=".ActivitySplashScreen"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ActivityMetas" />
-        <activity android:name=".itemMeta"></activity>
+        <activity android:name=".itemMeta" />
+
+        <receiver
+            android:name=".MyWidgetReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider_info">
+            </meta-data>
+        </receiver>
     </application>
 
 </manifest>

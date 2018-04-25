@@ -22,7 +22,7 @@ public class ActivityMain extends AppCompatActivity {
     TextView olvidecontrasena;
     Button crearperfil, iniciarSesion;
 
-    DatabaseReference databaseReference<
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
