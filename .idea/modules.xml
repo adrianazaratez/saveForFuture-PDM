@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PiggyBankMoviles.iml" filepath="$PROJECT_DIR$/PiggyBankMoviles.iml" />
       <module fileurl="file://C:\Users\Mariana Salas\Proyecto_Moviles\saveForFuture-PDM\PiggyBankMoviles.iml" filepath="C:\Users\Mariana Salas\Proyecto_Moviles\saveForFuture-PDM\PiggyBankMoviles.iml" />
       <module fileurl="file://C:\Users\hsm-y\Documents\ITESO\6to\ProyectoFinalMóviles\saveForFuture-PDM\PiggyBankMoviles.iml" filepath="C:\Users\hsm-y\Documents\ITESO\6to\ProyectoFinalMóviles\saveForFuture-PDM\PiggyBankMoviles.iml" />
       <module fileurl="file://C:\Users\hsm-y\AndroidStudioProjects\saveForFuture-PDM\PiggyBankMoviles.iml" filepath="C:\Users\hsm-y\AndroidStudioProjects\saveForFuture-PDM\PiggyBankMoviles.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://C:\Users\hsm-y\Documents\ITESO\6to\ProyectoFinalMóviles\saveForFuture-PDM\app\app.iml" filepath="C:\Users\hsm-y\Documents\ITESO\6to\ProyectoFinalMóviles\saveForFuture-PDM\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/saveForFuture-PDM.iml" filepath="$PROJECT_DIR$/saveForFuture-PDM.iml" />
       <module fileurl="file://C:\Users\adriana\AndroidStudioProjects\PiggyBankMoviles\saveForFuture-PDM.iml" filepath="C:\Users\adriana\AndroidStudioProjects\PiggyBankMoviles\saveForFuture-PDM.iml" />
     </modules>
   </component>
