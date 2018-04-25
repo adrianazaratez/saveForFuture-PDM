@@ -33,8 +33,8 @@ public class ActivityMetas extends AppCompatActivity {
        recyclerView.setLayoutManager(mLayoutManager);
 
         metas = new ArrayList<itemMeta>();
-        metas.add(new itemMeta("Viaje a Colombia", "70%"));
-        metas.add(new itemMeta("iPhone X", "10%"));
+        metas.add(new itemMeta("Viaje a Colombia", "70%", 70));
+        metas.add(new itemMeta("iPhone X", "10%",10));
 
         mAdapter = new AdapterMetas(this,metas);
         recyclerView.setAdapter(mAdapter);

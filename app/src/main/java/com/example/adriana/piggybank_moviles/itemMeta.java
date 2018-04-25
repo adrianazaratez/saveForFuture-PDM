@@ -6,11 +6,24 @@ import android.os.Parcelable;
 public class itemMeta implements Parcelable {
 
     private String name, porcentaje;
+    private int progress;
 
-    public itemMeta(String name, String porcentaje) {
+    public String getName() {
+        return name;
+    }
+
+    public String getPorcentaje() {
+        return porcentaje;
+    }
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public itemMeta(String name, String porcentaje, int progress) {
         this.name = name;
         this.porcentaje = porcentaje;
-
+        this.progress = progress;
     }
 
     @Override
@@ -18,26 +31,21 @@ public class itemMeta implements Parcelable {
         return "itemMeta{" +
                 "name='" + name + '\'' +
                 ", porcentaje='" + porcentaje + '\'' +
+                ", progress=" + progress +
                 '}';
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getPorcentaje() {
-        return porcentaje;
-    }
-
     public void setPorcentaje(String porcentaje) {
         this.porcentaje = porcentaje;
     }
 
-
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
 
     @Override
     public int describeContents() {
@@ -48,12 +56,13 @@ public class itemMeta implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.name);
         dest.writeString(this.porcentaje);
+        dest.writeInt(this.progress);
     }
 
     protected itemMeta(Parcel in) {
         this.name = in.readString();
         this.porcentaje = in.readString();
-
+        this.progress = in.readInt();
     }
 
     public static final Parcelable.Creator<itemMeta> CREATOR = new Parcelable.Creator<itemMeta>() {

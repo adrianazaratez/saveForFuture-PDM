@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="160dp"
@@ -14,10 +14,16 @@
         android:layout_width="match_parent"
         android:layout_height="160dp">
 
-        <ProgressBar
+        <com.mikhaellopez.circularprogressbar.CircularProgressBar
             android:id="@+id/item_meta_progressbar"
             android:layout_width="130dp"
-            android:layout_height="130dp" />
+            android:layout_height="130dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            app:background_progressbar_color="#FFCDD2"
+            app:background_progressbar_width="5dp"
+            app:progressbar_color="#F44336"
+            app:progressbar_width="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
