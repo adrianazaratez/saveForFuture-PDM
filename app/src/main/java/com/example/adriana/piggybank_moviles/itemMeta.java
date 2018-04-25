@@ -8,7 +8,6 @@ public class itemMeta implements Parcelable {
     private String name, porcentaje;
     private int progress;
 
-<<<<<<< HEAD
     public String getName() {
         return name;
     }
@@ -21,19 +20,6 @@ public class itemMeta implements Parcelable {
         return progress;
     }
 
-    public itemMeta(String name, String porcentaje, int progress) {
-=======
-    public itemMeta(){
-
-    }
-
-    public itemMeta(String name, String porcentaje, Integer image) {
->>>>>>> 0bb9a4999a2ae181868e79db2b75f51e5862bde7
-        this.name = name;
-        this.porcentaje = porcentaje;
-        this.progress = progress;
-    }
-
     @Override
     public String toString() {
         return "itemMeta{" +
@@ -41,6 +27,12 @@ public class itemMeta implements Parcelable {
                 ", porcentaje='" + porcentaje + '\'' +
                 ", progress=" + progress +
                 '}';
+    }
+
+    public itemMeta(String name, String porcentaje, int progress) {
+        this.name = name;
+        this.porcentaje = porcentaje;
+        this.progress = progress;
     }
 
     public void setName(String name) {

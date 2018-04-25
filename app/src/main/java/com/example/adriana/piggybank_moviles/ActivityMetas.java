@@ -10,9 +10,22 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
+import com.example.adriana.piggybank_moviles.beans.Categoria;
+import com.example.adriana.piggybank_moviles.beans.Meta;
+import com.example.adriana.piggybank_moviles.beans.Usuario;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ActivityMetas extends AppCompatActivity {
 
@@ -20,6 +33,20 @@ public class ActivityMetas extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<itemMeta> metas;
     RecyclerView recyclerView;
+
+    DatabaseReference databaseReference;
+    String id;
+    String idfirebase;
+    Usuario user;
+
+    ArrayList<Usuario> usersList = new ArrayList<>();
+    ArrayList<String> fbUserIDList = new ArrayList<>();
+    HashMap<String,Boolean> meta;
+    ArrayList<Meta> metasList = new ArrayList<>();
+    ArrayList<String> fbmetaIDList = new ArrayList<>();
+    ArrayList<Meta> metax = new ArrayList<>();
+    java.util.Date fecha;
+    String stringFecha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +56,48 @@ public class ActivityMetas extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
 
        recyclerView = findViewById(R.id.containerMetas);
-       recyclerView.setHasFixedSize(true);
-       recyclerView.setLayoutManager(mLayoutManager);
+
+
+        fecha = new Date();
+        Log.e("ID",id);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                usersList.clear();
+                fbUserIDList.clear();
+                meta.clear();
+                fbmetaIDList.clear();
+                for(DataSnapshot snapshot : dataSnapshot.child("user").getChildren()){
+                    Usuario value = snapshot.getValue(Usuario.class);
+                    idfirebase = snapshot.getKey();
+                    Log.e("FIREBASE", idfirebase+" "+value.toString());
+                    usersList.add(value);
+                    fbUserIDList.add(idfirebase);
+                }
+                for(DataSnapshot snapshot : dataSnapshot.child("meta").getChildren()){
+                    Meta value = snapshot.getValue(Meta.class);
+                    idfirebase = snapshot.getKey();
+                    Log.e("FIREBASE", idfirebase +" "+value.toString());
+                    metasList.add(value);
+                    fbmetaIDList.add(idfirebase);
+                }
+
+                for(DataSnapshot snapshot : dataSnapshot.child("categoria").getChildren()){
+                    Categoria value = snapshot.getValue(Categoria.class);
+                    idfirebase = snapshot.getKey();
+                    Log.e("FIREBASE", idfirebase+ " "+value.toString());
+                }
+
+                doThings();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         metas = new ArrayList<itemMeta>();
         metas.add(new itemMeta("Viaje a Colombia", "70%", 70));
@@ -49,34 +116,30 @@ public class ActivityMetas extends AppCompatActivity {
         });
 
     }
+    public void doThings() {
+        for (int i = 0; i < fbUserIDList.size(); i++) {
+            if (id.equals(fbUserIDList.get(i))) {
+                user = usersList.get(i);
+                break;
+            }
+        }
+
+        meta = user.getMeta();
+
+        for(Map.Entry<String,Boolean>entry : meta.entrySet()){
+            String key = entry.getKey();
+            for(int i = 0; i < fbmetaIDList.size(); i++) {
+                if (key.equals(fbmetaIDList.get(i))){
+                    metax.add(metasList.get(i));
+                    break;
+                }
+            }
+        }
+
+
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(mLayoutManager);
+    }
 
 }
-
-
-/**
-
- @Override
- public void onActivityCreated(@Nullable Bundle savedInstanceState) {
- super.onActivityCreated(savedInstanceState);
-
- recyclerView.setHasFixedSize(true);
-
- mLayoutManager = new LinearLayoutManager(getActivity());
- recyclerView.setLayoutManager(mLayoutManager);
-
- gastos = new ArrayList<itemGasto>();
- gastos.add(new itemGasto("Comida", 0));
- gastos.add(new itemGasto("Transporte", 1));
- gastos.add(new itemGasto("Ropa", 2));
- gastos.add(new itemGasto("Casa", 3));
- gastos.add(new itemGasto("Entretenimiento", 4));
- gastos.add(new itemGasto("Salud", 5));
- gastos.add(new itemGasto("Cosmeticos", 6));
- gastos.add(new itemGasto("Viajes", 7));
- gastos.add(new itemGasto("Otros", 8));
-
- mAdapter = new AdapterGastos(getActivity(), gastos);
- recyclerView.setAdapter(mAdapter);
- }
-
- **/
