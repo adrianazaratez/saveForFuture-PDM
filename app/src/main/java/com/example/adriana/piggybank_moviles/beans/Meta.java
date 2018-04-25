@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Meta implements Parcelable {
     String id;
-    String cantidad;
+    Long cantidad;
     String fechaLimite;
     String nombre;
     ArrayList<Categoria> categoria;
@@ -19,7 +19,7 @@ public class Meta implements Parcelable {
     public Meta() {
     }
 
-    public Meta(String id, String cantidad, String fechaLimite, String nombre, ArrayList<Categoria> categoria) {
+    public Meta(String id, Long cantidad, String fechaLimite, String nombre, ArrayList<Categoria> categoria) {
         this.id = id;
         this.cantidad = cantidad;
         this.fechaLimite = fechaLimite;
@@ -46,11 +46,11 @@ public class Meta implements Parcelable {
         this.id = id;
     }
 
-    public String getCantidad() {
+    public Long getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(String cantidad) {
+    public void setCantidad(Long cantidad) {
         this.cantidad = cantidad;
     }
 
@@ -87,7 +87,7 @@ public class Meta implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.id);
-        dest.writeString(this.cantidad);
+        dest.writeLong(this.cantidad);
         dest.writeString(this.fechaLimite);
         dest.writeString(this.nombre);
         dest.writeTypedList(this.categoria);
@@ -95,7 +95,7 @@ public class Meta implements Parcelable {
 
     protected Meta(Parcel in) {
         this.id = in.readString();
-        this.cantidad = in.readString();
+        this.cantidad = in.readLong();
         this.fechaLimite = in.readString();
         this.nombre = in.readString();
         this.categoria = in.createTypedArrayList(Categoria.CREATOR);

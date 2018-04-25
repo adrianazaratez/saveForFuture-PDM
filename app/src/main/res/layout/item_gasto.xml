@@ -35,13 +35,13 @@
             android:layout_toEndOf="@+id/item_gasto_image"
             android:id="@+id/item_gasto_name" />
 
-        <ProgressBar
+        <TextView
             android:id="@+id/item_gasto_progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="90dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="53dp"
-            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content"
+            android:text="Cantidad"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="35dp"
             android:layout_toEndOf="@+id/item_gasto_name" />
     </RelativeLayout>
 

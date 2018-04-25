@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.adriana.piggybank_moviles.beans.Categoria;
 import com.example.adriana.piggybank_moviles.beans.Movimiento;
@@ -163,6 +164,8 @@ public class ActivityCategories extends AppCompatActivity{
 
                 String userId = databaseReference.child("user").push().getKey();
                 databaseReference.child("user").child(userId).setValue(usuario);
+
+                Toast.makeText(ActivityCategories.this,"Se creó el perfil",Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(ActivityCategories.this, ActivityMenu.class);
                 startActivity(intent);

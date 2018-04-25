@@ -11,11 +11,15 @@ public class itemGasto implements Parcelable {
 
     private String name;
     private Integer image;
+    private Long monto;
 
     public itemGasto() {
-        this.name = "";
-        this.image = 0;
+    }
 
+    public itemGasto(String name, Integer image, Long monto) {
+        this.name = name;
+        this.image = image;
+        this.monto = monto;
     }
 
     @Override
@@ -23,13 +27,8 @@ public class itemGasto implements Parcelable {
         return "itemGasto{" +
                 "name='" + name + '\'' +
                 ", image=" + image +
+                ", monto=" + monto +
                 '}';
-    }
-
-    public itemGasto(String name, Integer image) {
-        this.name = name;
-        this.image = image;
-
     }
 
     public String getName() {
@@ -48,6 +47,14 @@ public class itemGasto implements Parcelable {
         this.image = image;
     }
 
+    public Long getMonto() {
+        return monto;
+    }
+
+    public void setMonto(Long monto) {
+        this.monto = monto;
+    }
+
 
     @Override
     public int describeContents() {
@@ -58,16 +65,16 @@ public class itemGasto implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.name);
         dest.writeValue(this.image);
-
+        dest.writeValue(this.monto);
     }
 
     protected itemGasto(Parcel in) {
         this.name = in.readString();
         this.image = (Integer) in.readValue(Integer.class.getClassLoader());
-
+        this.monto = (Long) in.readValue(Long.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<itemGasto> CREATOR = new Parcelable.Creator<itemGasto>() {
+    public static final Creator<itemGasto> CREATOR = new Creator<itemGasto>() {
         @Override
         public itemGasto createFromParcel(Parcel source) {
             return new itemGasto(source);

@@ -44,8 +44,8 @@
             android:name=".ActivitySplashScreen"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ActivityMetas" />
-        <activity android:name=".itemMeta" />
 
+        <!--<activity android:name=".itemMeta"></activity>-->
         <receiver
             android:name=".MyWidgetReceiver"
             android:enabled="true"

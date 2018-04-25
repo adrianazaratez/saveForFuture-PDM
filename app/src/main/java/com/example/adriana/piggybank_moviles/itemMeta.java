@@ -8,6 +8,10 @@ public class itemMeta implements Parcelable {
     private String name, porcentaje;
     private Integer image;
 
+    public itemMeta(){
+
+    }
+
     public itemMeta(String name, String porcentaje, Integer image) {
         this.name = name;
         this.porcentaje = porcentaje;
