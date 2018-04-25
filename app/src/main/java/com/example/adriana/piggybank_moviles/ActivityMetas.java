@@ -7,14 +7,25 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 
+import com.example.adriana.piggybank_moviles.beans.Categoria;
+import com.example.adriana.piggybank_moviles.beans.Meta;
+import com.example.adriana.piggybank_moviles.beans.Usuario;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ActivityMetas extends AppCompatActivity {
 
@@ -23,15 +34,77 @@ public class ActivityMetas extends AppCompatActivity {
     private ArrayList<itemMeta> metas;
     RecyclerView recyclerView;
 
-    public ActivityMetas(){
+    DatabaseReference databaseReference;
+    String id;
+    String idfirebase;
+    Usuario user;
 
-    }
+    ArrayList<Usuario> usersList = new ArrayList<>();
+    ArrayList<String> fbUserIDList = new ArrayList<>();
+    HashMap<String,Boolean> meta;
+    ArrayList<Meta> metasList = new ArrayList<>();
+    ArrayList<String> fbmetaIDList = new ArrayList<>();
+    ArrayList<Meta> metax = new ArrayList<>();
+    java.util.Date fecha;
+    String stringFecha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_metas);
 
+        mLayoutManager = new LinearLayoutManager(this);
+
+       recyclerView = findViewById(R.id.containerMetas);
+
+
+        fecha = new Date();
+        Log.e("ID",id);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                usersList.clear();
+                fbUserIDList.clear();
+                meta.clear();
+                fbmetaIDList.clear();
+                for(DataSnapshot snapshot : dataSnapshot.child("user").getChildren()){
+                    Usuario value = snapshot.getValue(Usuario.class);
+                    idfirebase = snapshot.getKey();
+                    Log.e("FIREBASE", idfirebase+" "+value.toString());
+                    usersList.add(value);
+                    fbUserIDList.add(idfirebase);
+                }
+                for(DataSnapshot snapshot : dataSnapshot.child("meta").getChildren()){
+                    Meta value = snapshot.getValue(Meta.class);
+                    idfirebase = snapshot.getKey();
+                    Log.e("FIREBASE", idfirebase +" "+value.toString());
+                    metasList.add(value);
+                    fbmetaIDList.add(idfirebase);
+                }
+
+                for(DataSnapshot snapshot : dataSnapshot.child("categoria").getChildren()){
+                    Categoria value = snapshot.getValue(Categoria.class);
+                    idfirebase = snapshot.getKey();
+                    Log.e("FIREBASE", idfirebase+ " "+value.toString());
+                }
+
+                doThings();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        metas = new ArrayList<itemMeta>();
+        metas.add(new itemMeta("Viaje a Colombia", "70%", 70));
+        metas.add(new itemMeta("iPhone X", "10%",10));
+
+        mAdapter = new AdapterMetas(this,metas);
+        recyclerView.setAdapter(mAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -43,23 +116,31 @@ public class ActivityMetas extends AppCompatActivity {
         });
 
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_logOut:
-                Intent intent2= new Intent(ActivityMetas.this,ActivityMain.class); startActivity(intent2);
-                finish();
-                return true;
+    public void doThings() {
+        for (int i = 0; i < fbUserIDList.size(); i++) {
+            if (id.equals(fbUserIDList.get(i))) {
+                user = usersList.get(i);
+                break;
+            }
         }
-        return super.onOptionsItemSelected(item);
+
+        meta = user.getMeta();
+
+        for(Map.Entry<String,Boolean>entry : meta.entrySet()){
+            String key = entry.getKey();
+            for(int i = 0; i < fbmetaIDList.size(); i++) {
+                if (key.equals(fbmetaIDList.get(i))){
+                    metax.add(metasList.get(i));
+                    break;
+                }
+            }
+        }
+
+
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(mLayoutManager);
     }
 
 }
+
