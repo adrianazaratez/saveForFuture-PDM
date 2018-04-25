@@ -1,6 +1,8 @@
 package com.example.adriana.piggybank_moviles;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,11 +25,9 @@ public class ActivityMain extends AppCompatActivity {
     EditText usuario,contrasena;
     TextView olvidecontrasena;
     Button crearperfil, iniciarSesion;
-<<<<<<< HEAD
 
-=======
     ArrayList<Usuario> usersList = new ArrayList<>();
->>>>>>> 5057ad140e558107bf1e49e78b61deb4441baa1f
+
     DatabaseReference databaseReference;
 
     @Override
@@ -41,55 +41,74 @@ public class ActivityMain extends AppCompatActivity {
         olvidecontrasena = findViewById(R.id.activity_main_forgotPWD);
         iniciarSesion = findViewById(R.id.activity_main_login);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        //PRUEBA IF IS LOGGED
+        //DEFAULT IS FALSE = NOT LOGGED
+        SharedPreferences prefs = getSharedPreferences("com.iteso.USER_PREFERENCES", Context.MODE_PRIVATE);
+        Boolean bandActivity = prefs.getBoolean("flag", false);
+        if (!bandActivity){
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                usersList.clear();
-                for(DataSnapshot snapshot : dataSnapshot.child("user").getChildren()){
-                    Usuario value = snapshot.getValue(Usuario.class);
-                    Log.e("FIREBASE",value.toString());
-                    usersList.add(value);
+            databaseReference = FirebaseDatabase.getInstance().getReference();
+
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    usersList.clear();
+                    for(DataSnapshot snapshot : dataSnapshot.child("user").getChildren()){
+                        Usuario value = snapshot.getValue(Usuario.class);
+                        Log.e("FIREBASE",value.toString());
+                        usersList.add(value);
+                    }
+
                 }
 
-            }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                }
+            });
 
-            }
-        });
 
-        
-        crearperfil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ActivityMain.this,ActivitySplashScreen.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+            crearperfil.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ActivityMain.this,ActivitySplashScreen.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
 
-        olvidecontrasena.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Correo con contraseña
-            }
-        });
+            olvidecontrasena.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Correo con contraseña
+                }
+            });
 
-        iniciarSesion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (int i = 0; i < usersList.size(); i++){
-                    if(usersList.get(i).getNombreUsuario().equals(usuario.getText().toString()) && usersList.get(i).getContrasena().equals(contrasena.getText().toString())){
-                        Intent intent = new Intent(ActivityMain.this,ActivityMenu.class);
-                        startActivity(intent);
-                        finish();
-                        break;
+            iniciarSesion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    for (int i = 0; i < usersList.size(); i++){
+                        if(usersList.get(i).getNombreUsuario().equals(usuario.getText().toString()) && usersList.get(i).getContrasena().equals(contrasena.getText().toString())){
+                            //PRUEBA (CAMBIAR A TRUE BANDERA)
+                            SharedPreferences prefs = getSharedPreferences("com.iteso.USER_PREFERENCES", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = prefs.edit();
+                            editor.putBoolean("flag", true);
+                            editor.apply();
+
+                            Intent intent = new Intent(ActivityMain.this,ActivityMenu.class);
+                            startActivity(intent);
+                            finish();
+                            break;
+                        }
                     }
                 }
-            }
-        });
+            });
+        } else {
+            Intent intent = new Intent(ActivityMain.this,ActivityMenu.class);
+            startActivity(intent);
+            finish();
+        }
+
     }
+
 }
