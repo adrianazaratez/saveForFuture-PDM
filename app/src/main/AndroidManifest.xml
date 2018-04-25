@@ -43,7 +43,7 @@
             android:name=".ActivitySplashScreen"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ActivityMetas" />
-        <activity android:name=".itemMeta"></activity>
+        <!--<activity android:name=".itemMeta"></activity>-->
     </application>
 
 </manifest>

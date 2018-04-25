@@ -3,11 +3,13 @@ package com.example.adriana.piggybank_moviles;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telecom.Connection;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.adriana.piggybank_moviles.beans.Usuario;
 import com.google.firebase.database.DataSnapshot;
@@ -57,7 +59,6 @@ public class ActivityMain extends AppCompatActivity {
             }
         });
 
-        
         crearperfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,13 +78,18 @@ public class ActivityMain extends AppCompatActivity {
         iniciarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int flag = 0;
                 for (int i = 0; i < usersList.size(); i++){
                     if(usersList.get(i).getNombreUsuario().equals(usuario.getText().toString()) && usersList.get(i).getContrasena().equals(contrasena.getText().toString())){
+                        flag = 1;
                         Intent intent = new Intent(ActivityMain.this,ActivityMenu.class);
                         startActivity(intent);
                         finish();
                         break;
                     }
+                }
+                if(flag==0){
+                    Toast.makeText(ActivityMain.this,"Usuario o contraseña incorrectos",Toast.LENGTH_LONG).show();
                 }
             }
         });
