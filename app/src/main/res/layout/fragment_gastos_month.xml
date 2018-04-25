@@ -1,12 +1,12 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.RecyclerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_gastos_month_recycler_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.adriana.piggybank_moviles.FragmentGastosMonth">
+    android:scrollbarStyle="outsideOverlay"
+    tools:context="com.example.adriana.piggybank_moviles.FragmentGastosToday">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/monthFragment" />
 
-</FrameLayout>
+
+</android.support.v7.widget.RecyclerView>
