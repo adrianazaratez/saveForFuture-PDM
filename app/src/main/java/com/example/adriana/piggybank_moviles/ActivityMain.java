@@ -16,12 +16,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class ActivityMain extends AppCompatActivity {
 
     EditText usuario,contrasena;
     TextView olvidecontrasena;
     Button crearperfil, iniciarSesion;
+<<<<<<< HEAD
 
+=======
+    ArrayList<Usuario> usersList = new ArrayList<>();
+>>>>>>> 5057ad140e558107bf1e49e78b61deb4441baa1f
     DatabaseReference databaseReference;
 
     @Override
@@ -37,16 +43,14 @@ public class ActivityMain extends AppCompatActivity {
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        /*
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //     User user = dataSnapshot.getValue(User.class);
-                //   message.setText(user.toString());
-
+                usersList.clear();
                 for(DataSnapshot snapshot : dataSnapshot.child("user").getChildren()){
                     Usuario value = snapshot.getValue(Usuario.class);
                     Log.e("FIREBASE",value.toString());
+                    usersList.add(value);
                 }
 
             }
@@ -56,7 +60,7 @@ public class ActivityMain extends AppCompatActivity {
 
             }
         });
-        */
+
         
         crearperfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,9 +81,14 @@ public class ActivityMain extends AppCompatActivity {
         iniciarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivityMain.this,ActivityMenu.class);
-                startActivity(intent);
-                finish();
+                for (int i = 0; i < usersList.size(); i++){
+                    if(usersList.get(i).getNombreUsuario().equals(usuario.getText().toString()) && usersList.get(i).getContrasena().equals(contrasena.getText().toString())){
+                        Intent intent = new Intent(ActivityMain.this,ActivityMenu.class);
+                        startActivity(intent);
+                        finish();
+                        break;
+                    }
+                }
             }
         });
     }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -39,27 +40,34 @@ public class AdapterMetas extends RecyclerView.Adapter<AdapterMetas.ViewHolder>{
         public TextView mProductTitle;
         public TextView mProductPercentage;
         public ImageView mProductImage;
+        public ProgressBar mProgressBar;
 
         public ViewHolder(View v) {
             super(v);
             mProductTitle = (TextView) v.findViewById(R.id.item_meta_name);
             mProductPercentage = (TextView) v.findViewById(R.id.item_meta_percentage) ;
-            mProductImage = (ImageView) v.findViewById(R.id.item_meta_image);
-
+     //       mProductImage = (ImageView) v.findViewById(R.id.item_meta_image);
+            mProgressBar = (ProgressBar) v.findViewById(R.id.item_meta_progressbar);
         }}
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.mProductTitle.setText(mDataSet.get(position).getName());
         holder.mProductPercentage.setText(mDataSet.get(position).getPorcentaje());
-
-        switch(mDataSet.get(position).getImage()){
-            case 0:
-                holder.mProductImage.setImageResource(R.drawable.metaviaje); break;
-            case 1:
-                holder.mProductImage.setImageResource(R.drawable.metacel); break;
-
+        int i = 0;
+        try {
+           i =  Integer.parseInt(mDataSet.get(position).getPorcentaje());
+        }catch(Exception e){
+            System.out.println(e);
         }
+        holder.mProgressBar.setProgress(i);
+//        switch(mDataSet.get(position).getImage()){
+//            case 0:
+//                holder.mProductImage.setImageResource(R.drawable.metaviaje); break;
+//            case 1:
+//                holder.mProductImage.setImageResource(R.drawable.metacel); break;
+//
+//        }
     }
 
     @Override
