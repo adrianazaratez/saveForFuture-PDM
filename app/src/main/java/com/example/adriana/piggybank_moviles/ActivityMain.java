@@ -22,7 +22,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ActivityMain extends AppCompatActivity {
 
@@ -31,6 +33,8 @@ public class ActivityMain extends AppCompatActivity {
     Button crearperfil, iniciarSesion;
 
     ArrayList<Usuario> usersList = new ArrayList<>();
+    ArrayList<String> usersIDList = new ArrayList<>();
+    String ids;
 
     DatabaseReference databaseReference;
 
@@ -49,7 +53,7 @@ public class ActivityMain extends AppCompatActivity {
         //DEFAULT IS FALSE = NOT LOGGED
         SharedPreferences prefs = getSharedPreferences("com.iteso.USER_PREFERENCES", Context.MODE_PRIVATE);
         Boolean bandActivity = prefs.getBoolean("flag", false);
-        if (!bandActivity){
+  //      if (!bandActivity){
 
             databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -57,10 +61,13 @@ public class ActivityMain extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     usersList.clear();
+                    usersIDList.clear();
                     for(DataSnapshot snapshot : dataSnapshot.child("user").getChildren()){
                         Usuario value = snapshot.getValue(Usuario.class);
+                        ids = snapshot.getKey();
                         Log.e("FIREBASE",value.toString());
                         usersList.add(value);
+                        usersIDList.add(ids);
                     }
 
                 }
@@ -135,6 +142,7 @@ public class ActivityMain extends AppCompatActivity {
                             editor.apply();
 
                             Intent intent = new Intent(ActivityMain.this,ActivityMenu.class);
+                            intent.putExtra("ID",usersIDList.get(i));
                             startActivity(intent);
                             finish();
                             break;
@@ -142,11 +150,11 @@ public class ActivityMain extends AppCompatActivity {
                     }
                 }
             });
-        } else {
+     /*   } else {
             Intent intent = new Intent(ActivityMain.this,ActivityMenu.class);
             startActivity(intent);
             finish();
-        }
+        }*/
     }
 
 }
