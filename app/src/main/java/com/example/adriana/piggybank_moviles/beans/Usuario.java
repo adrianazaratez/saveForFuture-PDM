@@ -3,6 +3,9 @@ package com.example.adriana.piggybank_moviles.beans;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * Created by adriana on 23/04/2018.
  */
@@ -15,11 +18,15 @@ public class Usuario implements Parcelable{
     public String genero;
     public String nombreUsuario;
     public String contrasena;
+    public Long salario;
+    public HashMap<String,Boolean> categoria;
+    public HashMap<String,Boolean> movimiento;
+    public HashMap<String,Boolean> meta;
 
     public Usuario() {
     }
 
-    public Usuario(String id, String nombre, String correo, String fechaNac, String genero, String nombreUsuario, String contrasena) {
+    public Usuario(String id, String nombre, String correo, String fechaNac, String genero, String nombreUsuario, String contrasena, Long salario, HashMap<String, Boolean> categoria, HashMap<String, Boolean> movimiento, HashMap<String, Boolean> meta) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
@@ -27,6 +34,27 @@ public class Usuario implements Parcelable{
         this.genero = genero;
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
+        this.salario = salario;
+        this.categoria = categoria;
+        this.movimiento = movimiento;
+        this.meta = meta;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", correo='" + correo + '\'' +
+                ", fechaNac='" + fechaNac + '\'' +
+                ", genero='" + genero + '\'' +
+                ", nombreUsuario='" + nombreUsuario + '\'' +
+                ", contrasena='" + contrasena + '\'' +
+                ", salario=" + salario +
+                ", categoria=" + categoria +
+                ", movimiento=" + movimiento +
+                ", meta=" + meta +
+                '}';
     }
 
     public String getId() {
@@ -85,18 +113,38 @@ public class Usuario implements Parcelable{
         this.contrasena = contrasena;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "id='" + id + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", correo='" + correo + '\'' +
-                ", fechaNac='" + fechaNac + '\'' +
-                ", genero='" + genero + '\'' +
-                ", nombreUsuario='" + nombreUsuario + '\'' +
-                ", contrasena='" + contrasena + '\'' +
-                '}';
+    public Long getSalario() {
+        return salario;
     }
+
+    public void setSalario(Long salario) {
+        this.salario = salario;
+    }
+
+    public HashMap<String, Boolean> getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(HashMap<String, Boolean> categoria) {
+        this.categoria = categoria;
+    }
+
+    public HashMap<String, Boolean> getMovimiento() {
+        return movimiento;
+    }
+
+    public void setMovimiento(HashMap<String, Boolean> movimiento) {
+        this.movimiento = movimiento;
+    }
+
+    public HashMap<String, Boolean> getMeta() {
+        return meta;
+    }
+
+    public void setMeta(HashMap<String, Boolean> meta) {
+        this.meta = meta;
+    }
+
 
     @Override
     public int describeContents() {
@@ -112,6 +160,10 @@ public class Usuario implements Parcelable{
         dest.writeString(this.genero);
         dest.writeString(this.nombreUsuario);
         dest.writeString(this.contrasena);
+        dest.writeValue(this.salario);
+        dest.writeSerializable(this.categoria);
+        dest.writeSerializable(this.movimiento);
+        dest.writeSerializable(this.meta);
     }
 
     protected Usuario(Parcel in) {
@@ -122,6 +174,10 @@ public class Usuario implements Parcelable{
         this.genero = in.readString();
         this.nombreUsuario = in.readString();
         this.contrasena = in.readString();
+        this.salario = (Long) in.readValue(Long.class.getClassLoader());
+        this.categoria = (HashMap<String, Boolean>) in.readSerializable();
+        this.movimiento = (HashMap<String, Boolean>) in.readSerializable();
+        this.meta = (HashMap<String, Boolean>) in.readSerializable();
     }
 
     public static final Creator<Usuario> CREATOR = new Creator<Usuario>() {

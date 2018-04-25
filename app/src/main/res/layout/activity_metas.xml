@@ -1,57 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#ffffff"
+    android:fitsSystemWindows="true"
     tools:context="com.example.adriana.piggybank_moviles.ActivityMetas">
 
-    <RelativeLayout
+    <android.support.v4.view.ViewPager
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
-
-    <ImageView
-        android:id="@+id/item_meta_image"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:src="@drawable/metaviaje"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/item_meta_image"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="29dp"
-        android:layout_toEndOf="@+id/item_meta_image"
-        android:textSize="20dp"
-        android:text="Viaje a Colombia"
-        android:id="@+id/item_meta_name" />
-
-    <TextView
-        android:id="@+id/item_meta_percentage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/item_meta_name"
-        android:layout_below="@+id/item_meta_name"
-        android:layout_marginEnd="48dp"
-        android:layout_marginTop="14dp"
-        android:text="70%"
-        android:textSize="40dp" />
-    </RelativeLayout>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/newmeta"
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_input_add" />
 
-
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
