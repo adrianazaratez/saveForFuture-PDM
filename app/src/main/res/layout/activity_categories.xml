@@ -38,7 +38,8 @@
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/transport"
                     android:scaleType="fitCenter"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:onClick="transportonClick"/>
 
                 <ImageButton
                     android:id="@+id/activity_categories_clothing"
@@ -47,7 +48,8 @@
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/clothing"
                     android:scaleType="fitCenter"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:onClick="clothingonClick"/>
 
             </LinearLayout>
 
@@ -64,7 +66,8 @@
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/health"
                     android:scaleType="fitCenter"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:onClick="healthonClick"/>
 
                 <ImageButton
                     android:id="@+id/activity_categories_entertainment"
@@ -73,7 +76,8 @@
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/entertainment"
                     android:scaleType="fitCenter"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:onClick="entertainmentonClick"/>
 
             </LinearLayout>
 
@@ -90,7 +94,8 @@
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/food"
                     android:scaleType="fitCenter"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:onClick="onClickFood"/>
 
                 <ImageButton
                     android:id="@+id/activity_categories_home"
@@ -99,7 +104,8 @@
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/home"
                     android:scaleType="fitCenter"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:onClick="homeonClick"/>
 
             </LinearLayout>
 
@@ -125,7 +131,8 @@
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/arrow"
                     android:scaleType="centerInside"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:onClick="otheronClick"/>
 
             </LinearLayout>
 
