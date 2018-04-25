@@ -133,7 +133,9 @@ public class FragmentGastosToday extends android.support.v4.app.Fragment{
             String key = entry.getKey();
             for(int i = 0; i < movimientosIDList.size(); i++) {
                 if (key.equals(movimientosIDList.get(i))){
-                    movimientox.add(movimientosList.get(i));
+                    if(movimientosList.get(i).getTipo().equals("gasto")&& movimientosList.get(i).getFecha().equals(stringFecha)) {
+                        movimientox.add(movimientosList.get(i));
+                    }
                     break;
                 }
             }
@@ -141,28 +143,29 @@ public class FragmentGastosToday extends android.support.v4.app.Fragment{
 
         ArrayList<Categoria> categoriax = new ArrayList<>();
 
-        HashMap<String,Boolean> category = null;
+        ArrayList<HashMap<String,Boolean>> category = new ArrayList<>();
 
         for (int i = 0; i < movimientox.size(); i++) {
             Log.e("Movimientox", movimientox.get(i).toString());
-            category = movimientox.get(i).getCategoria();
-        }
-
-        for (Map.Entry<String, Boolean> entry : category.entrySet()) {
-            String key = entry.getKey();
-            for(int i = 0; i < categoriasIDList.size(); i++) {
-                if (key.equals(categoriasIDList.get(i))){
-                    categoriax.add(categoriasList.get(i));
-                    break;
+            category.add(movimientox.get(i).getCategoria());
+            for (Map.Entry<String, Boolean> entry : movimientox.get(i).getCategoria().entrySet()) {
+                String key = entry.getKey();
+                for(int j = 0; j < categoriasIDList.size(); j++) {
+                    if (key.equals(categoriasIDList.get(j))){
+                        categoriax.add(categoriasList.get(j));
+                        break;
+                    }
                 }
             }
         }
+
 
         for(int i = 0; i < categoriax.size(); i++) {
             Log.e("CATEGORIAX", categoriax.get(i).toString());
         }
 
         Log.e("CATEGORIAX", categoriax.get(0).toString());
+
         recyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(getActivity());
@@ -175,7 +178,7 @@ public class FragmentGastosToday extends android.support.v4.app.Fragment{
         for(int i = 0; i < movimientox.size(); i++){
 
             int image = 0;
-            switch(categoriax.get(0).getNombre()){
+            switch(categoriax.get(i).getNombre()){
                 case "Comida":
                     image = 0;
                     break;
@@ -208,7 +211,7 @@ public class FragmentGastosToday extends android.support.v4.app.Fragment{
                     break;
             }
             Log.e("MONTO",movimientox.get(i).getMonto().toString());
-            gastos.add(new itemGasto(categoriax.get(i).getNombre(),image,movimientox.get(i).getMonto()));
+            gastos.add(new itemGasto(categoriax.get(i).getNombre(),image,movimientox.get(i).getMonto().toString()));
         }
 
 

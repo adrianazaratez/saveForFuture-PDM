@@ -48,12 +48,12 @@ public class AdapterGastos extends RecyclerView.Adapter<AdapterGastos.ViewHolder
             mEventLayout = (RelativeLayout) v.findViewById(R.id.item_gasto_layout);
             mProductTitle = (TextView) v.findViewById(R.id.item_gasto_name);
             mProductImage = (ImageView) v.findViewById(R.id.item_gasto_image);
-            mMonto = (TextView) v.findViewById(R.id.item_meta_progressbar);
+            mMonto = (TextView) v.findViewById(R.id.item_gasto_progressBar);
         }}
     @Override
     public void onBindViewHolder(AdapterGastos.ViewHolder holder, int position) {
         holder.mProductTitle.setText(mDataSet.get(position).getName());
-    //    holder.mMonto.setText(mDataSet.get(position).getMonto().toString()+"");
+        holder.mMonto.setText(mDataSet.get(position).getMonto() + ".00 $");
         switch(mDataSet.get(position).getImage()){
             case 0:
                 holder.mProductImage.setImageResource(R.drawable.comida); break;
