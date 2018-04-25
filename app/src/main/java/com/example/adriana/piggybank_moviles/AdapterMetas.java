@@ -24,6 +24,7 @@ public class AdapterMetas extends RecyclerView.Adapter<AdapterMetas.ViewHolder>{
         this.context = context;
     }
 
+
     public Context getContext() {
         return context;
     }
@@ -39,7 +40,7 @@ public class AdapterMetas extends RecyclerView.Adapter<AdapterMetas.ViewHolder>{
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mProductTitle;
         public TextView mProductPercentage;
-        public ImageView mProductImage;
+       // public ImageView mProductImage;
         public ProgressBar mProgressBar;
 
         public ViewHolder(View v) {
@@ -51,7 +52,7 @@ public class AdapterMetas extends RecyclerView.Adapter<AdapterMetas.ViewHolder>{
         }}
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder( ViewHolder holder, int position) {
         holder.mProductTitle.setText(mDataSet.get(position).getName());
         holder.mProductPercentage.setText(mDataSet.get(position).getPorcentaje());
         int i = 0;
@@ -61,13 +62,7 @@ public class AdapterMetas extends RecyclerView.Adapter<AdapterMetas.ViewHolder>{
             System.out.println(e);
         }
         holder.mProgressBar.setProgress(i);
-//        switch(mDataSet.get(position).getImage()){
-//            case 0:
-//                holder.mProductImage.setImageResource(R.drawable.metaviaje); break;
-//            case 1:
-//                holder.mProductImage.setImageResource(R.drawable.metacel); break;
-//
-//        }
+
     }
 
     @Override

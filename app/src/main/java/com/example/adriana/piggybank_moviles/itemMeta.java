@@ -6,12 +6,11 @@ import android.os.Parcelable;
 public class itemMeta implements Parcelable {
 
     private String name, porcentaje;
-    private Integer image;
 
-    public itemMeta(String name, String porcentaje, Integer image) {
+    public itemMeta(String name, String porcentaje) {
         this.name = name;
         this.porcentaje = porcentaje;
-        this.image = image;
+
     }
 
     @Override
@@ -19,7 +18,6 @@ public class itemMeta implements Parcelable {
         return "itemMeta{" +
                 "name='" + name + '\'' +
                 ", porcentaje='" + porcentaje + '\'' +
-                ", image=" + image +
                 '}';
     }
 
@@ -39,13 +37,7 @@ public class itemMeta implements Parcelable {
         this.porcentaje = porcentaje;
     }
 
-    public Integer getImage() {
-        return image;
-    }
 
-    public void setImage(Integer image) {
-        this.image = image;
-    }
 
     @Override
     public int describeContents() {
@@ -56,13 +48,12 @@ public class itemMeta implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.name);
         dest.writeString(this.porcentaje);
-        dest.writeValue(this.image);
     }
 
     protected itemMeta(Parcel in) {
         this.name = in.readString();
         this.porcentaje = in.readString();
-        this.image = (Integer) in.readValue(Integer.class.getClassLoader());
+
     }
 
     public static final Parcelable.Creator<itemMeta> CREATOR = new Parcelable.Creator<itemMeta>() {
