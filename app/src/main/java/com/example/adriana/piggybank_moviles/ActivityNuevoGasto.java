@@ -1,6 +1,8 @@
 package com.example.adriana.piggybank_moviles;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,7 +40,10 @@ public class ActivityNuevoGasto extends AppCompatActivity {
         categoria = findViewById(R.id.activity_nuevogasto_spinner);
         cantidad = findViewById(R.id.activity_nuevogasto_cantidad);
 
-        id = getIntent().getExtras().getString("ID");
+       // id = getIntent().getExtras().getString("ID");
+        SharedPreferences prefs = getSharedPreferences("com.iteso.SAVEFF_USER_PREFERENCES", Context.MODE_PRIVATE);
+        Boolean bandActivity = prefs.getBoolean("flag", false);
+        id = prefs.getString("uID", null);
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 

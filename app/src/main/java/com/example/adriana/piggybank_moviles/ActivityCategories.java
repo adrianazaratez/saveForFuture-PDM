@@ -168,6 +168,7 @@ public class ActivityCategories extends AppCompatActivity{
                 Toast.makeText(ActivityCategories.this,"Se creó el perfil",Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(ActivityCategories.this, ActivityMenu.class);
+                intent.putExtra("ID",userId);
                 startActivity(intent);
                 finish();
             }
