@@ -6,16 +6,18 @@ import android.os.Parcelable;
 public class itemMeta implements Parcelable {
 
     private String name, porcentaje;
-    private Integer image;
+    private int progress;
 
-    public itemMeta(){
-
+    public String getName() {
+        return name;
     }
 
-    public itemMeta(String name, String porcentaje, Integer image) {
-        this.name = name;
-        this.porcentaje = porcentaje;
-        this.image = image;
+    public String getPorcentaje() {
+        return porcentaje;
+    }
+
+    public int getProgress() {
+        return progress;
     }
 
     @Override
@@ -23,32 +25,26 @@ public class itemMeta implements Parcelable {
         return "itemMeta{" +
                 "name='" + name + '\'' +
                 ", porcentaje='" + porcentaje + '\'' +
-                ", image=" + image +
+                ", progress=" + progress +
                 '}';
     }
 
-    public String getName() {
-        return name;
+    public itemMeta(String name, String porcentaje, int progress) {
+        this.name = name;
+        this.porcentaje = porcentaje;
+        this.progress = progress;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getPorcentaje() {
-        return porcentaje;
-    }
-
     public void setPorcentaje(String porcentaje) {
         this.porcentaje = porcentaje;
     }
 
-    public Integer getImage() {
-        return image;
-    }
-
-    public void setImage(Integer image) {
-        this.image = image;
+    public void setProgress(int progress) {
+        this.progress = progress;
     }
 
     @Override
@@ -60,13 +56,13 @@ public class itemMeta implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.name);
         dest.writeString(this.porcentaje);
-        dest.writeValue(this.image);
+        dest.writeInt(this.progress);
     }
 
     protected itemMeta(Parcel in) {
         this.name = in.readString();
         this.porcentaje = in.readString();
-        this.image = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.progress = in.readInt();
     }
 
     public static final Parcelable.Creator<itemMeta> CREATOR = new Parcelable.Creator<itemMeta>() {

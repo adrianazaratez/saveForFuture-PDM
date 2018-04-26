@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by adriana on 24/04/2018.
@@ -14,28 +15,17 @@ public class Meta implements Parcelable {
     Long cantidad;
     String fechaLimite;
     String nombre;
-    ArrayList<Categoria> categoria;
+    HashMap<String,Boolean> categoria;
 
-    public Meta() {
+    public Meta(){
+
     }
-
-    public Meta(String id, Long cantidad, String fechaLimite, String nombre, ArrayList<Categoria> categoria) {
+    public Meta(String id, Long cantidad, String fechaLimite, String nombre, HashMap<String, Boolean> categoria) {
         this.id = id;
         this.cantidad = cantidad;
         this.fechaLimite = fechaLimite;
         this.nombre = nombre;
         this.categoria = categoria;
-    }
-
-    @Override
-    public String toString() {
-        return "Meta{" +
-                "id='" + id + '\'' +
-                ", cantidad='" + cantidad + '\'' +
-                ", fechaLimite='" + fechaLimite + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", categoria=" + categoria +
-                '}';
     }
 
     public String getId() {
@@ -70,14 +60,13 @@ public class Meta implements Parcelable {
         this.nombre = nombre;
     }
 
-    public ArrayList<Categoria> getCategoria() {
+    public HashMap<String, Boolean> getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(ArrayList<Categoria> categoria) {
+    public void setCategoria(HashMap<String, Boolean> categoria) {
         this.categoria = categoria;
     }
-
 
     @Override
     public int describeContents() {
@@ -87,18 +76,18 @@ public class Meta implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.id);
-        dest.writeLong(this.cantidad);
+        dest.writeValue(this.cantidad);
         dest.writeString(this.fechaLimite);
         dest.writeString(this.nombre);
-        dest.writeTypedList(this.categoria);
+        dest.writeSerializable(this.categoria);
     }
 
     protected Meta(Parcel in) {
         this.id = in.readString();
-        this.cantidad = in.readLong();
+        this.cantidad = (Long) in.readValue(Long.class.getClassLoader());
         this.fechaLimite = in.readString();
         this.nombre = in.readString();
-        this.categoria = in.createTypedArrayList(Categoria.CREATOR);
+        this.categoria = (HashMap<String, Boolean>) in.readSerializable();
     }
 
     public static final Creator<Meta> CREATOR = new Creator<Meta>() {

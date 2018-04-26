@@ -1,6 +1,8 @@
 package com.example.adriana.piggybank_moviles;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -30,53 +32,58 @@ public class ActivityMenu extends AppCompatActivity {
 
         id = getIntent().getExtras().getString("ID");
 
-        gastos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ActivityMenu.this,ActivityGastos.class);
-                intent.putExtra("ID",id);
-                startActivity(intent);
-                //finish();
-            }
-        });
+        if(id == null){
+            Intent intent = new Intent(ActivityMenu.this,ActivityMain.class);
+            startActivity(intent);
+            finish();
+        } else {
+            gastos.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ActivityMenu.this,ActivityGastos.class);
+                    intent.putExtra("ID",id);
+                    startActivity(intent);
+                    //finish();
+                }
+            });
 
-        metas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ActivityMenu.this,ActivityMetas.class);
-                intent.putExtra("ID",id);
-                startActivity(intent);
-               // finish();
-            }
-        });
+            metas.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ActivityMenu.this,ActivityMetas.class);
+                    intent.putExtra("ID",id);
+                    startActivity(intent);
+                    // finish();
+                }
+            });
 
-        ingresos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ActivityMenu.this,ActivityIngresos.class);
-                startActivity(intent);
-               // finish();
-            }
-        });
+            ingresos.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ActivityMenu.this,ActivityIngresos.class);
+                    startActivity(intent);
+                    // finish();
+                }
+            });
 
-        estadisticas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ActivityMenu.this,ActivityEstadisticas.class);
-                startActivity(intent);
-               // finish();
-            }
-        });
+            estadisticas.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ActivityMenu.this,ActivityEstadisticas.class);
+                    startActivity(intent);
+                    // finish();
+                }
+            });
 
-        retoDia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ActivityMenu.this,ActivityRetoDia.class);
-                startActivity(intent);
-               // finish();
-            }
-        });
-
+            retoDia.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ActivityMenu.this,ActivityRetoDia.class);
+                    startActivity(intent);
+                    // finish();
+                }
+            });
+        }
     }
 
     @Override
@@ -90,7 +97,13 @@ public class ActivityMenu extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_logOut:
-                Intent intent2= new Intent(ActivityMenu.this,ActivityMain.class); startActivity(intent2);
+                SharedPreferences.Editor editor = getSharedPreferences("com.iteso.SAVEFF_USER_PREFERENCES", Context.MODE_PRIVATE).edit();
+                editor.clear();
+                editor.apply();
+
+                Intent intent2= new Intent(ActivityMenu.this,ActivityMain.class);
+                intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent2);
                 finish();
                 return true;
         }

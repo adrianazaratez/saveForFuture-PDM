@@ -11,12 +11,12 @@ public class itemGasto implements Parcelable {
 
     private String name;
     private Integer image;
-    private Long monto;
+    private String monto;
 
     public itemGasto() {
     }
 
-    public itemGasto(String name, Integer image, Long monto) {
+    public itemGasto(String name, Integer image, String monto) {
         this.name = name;
         this.image = image;
         this.monto = monto;
@@ -27,7 +27,7 @@ public class itemGasto implements Parcelable {
         return "itemGasto{" +
                 "name='" + name + '\'' +
                 ", image=" + image +
-                ", monto=" + monto +
+                ", monto='" + monto + '\'' +
                 '}';
     }
 
@@ -47,11 +47,11 @@ public class itemGasto implements Parcelable {
         this.image = image;
     }
 
-    public Long getMonto() {
+    public String getMonto() {
         return monto;
     }
 
-    public void setMonto(Long monto) {
+    public void setMonto(String monto) {
         this.monto = monto;
     }
 
@@ -65,13 +65,13 @@ public class itemGasto implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.name);
         dest.writeValue(this.image);
-        dest.writeValue(this.monto);
+        dest.writeString(this.monto);
     }
 
     protected itemGasto(Parcel in) {
         this.name = in.readString();
         this.image = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.monto = (Long) in.readValue(Long.class.getClassLoader());
+        this.monto = in.readString();
     }
 
     public static final Creator<itemGasto> CREATOR = new Creator<itemGasto>() {
