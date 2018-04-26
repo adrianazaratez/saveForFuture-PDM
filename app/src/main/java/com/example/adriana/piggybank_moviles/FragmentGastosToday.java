@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.adriana.piggybank_moviles.beans.Categoria;
 import com.example.adriana.piggybank_moviles.beans.Movimiento;
@@ -129,92 +130,95 @@ public class FragmentGastosToday extends android.support.v4.app.Fragment{
 
         movimiento = user.getMovimiento();
 
-        for (Map.Entry<String, Boolean> entry : movimiento.entrySet()) {
-            String key = entry.getKey();
-            for(int i = 0; i < movimientosIDList.size(); i++) {
-                if (key.equals(movimientosIDList.get(i))){
-                    if(movimientosList.get(i).getTipo().equals("gasto")&& movimientosList.get(i).getFecha().equals(stringFecha)) {
-                        movimientox.add(movimientosList.get(i));
-                    }
-                    break;
-                }
-            }
-        }
-
-        ArrayList<Categoria> categoriax = new ArrayList<>();
-
-        ArrayList<HashMap<String,Boolean>> category = new ArrayList<>();
-
-        for (int i = 0; i < movimientox.size(); i++) {
-            Log.e("Movimientox", movimientox.get(i).toString());
-            category.add(movimientox.get(i).getCategoria());
-            for (Map.Entry<String, Boolean> entry : movimientox.get(i).getCategoria().entrySet()) {
+        if(movimiento == null){
+            Toast.makeText(getContext(),"No tienes gastos de hoy",Toast.LENGTH_LONG).show();
+            gastos = new ArrayList<>();
+        } else {
+            for (Map.Entry<String, Boolean> entry : movimiento.entrySet()) {
                 String key = entry.getKey();
-                for(int j = 0; j < categoriasIDList.size(); j++) {
-                    if (key.equals(categoriasIDList.get(j))){
-                        categoriax.add(categoriasList.get(j));
+                for (int i = 0; i < movimientosIDList.size(); i++) {
+                    if (key.equals(movimientosIDList.get(i))) {
+                        if (movimientosList.get(i).getTipo().equals("gasto") && movimientosList.get(i).getFecha().equals(stringFecha)) {
+                            movimientox.add(movimientosList.get(i));
+                        }
                         break;
                     }
                 }
             }
+
+            ArrayList<Categoria> categoriax = new ArrayList<>();
+
+            ArrayList<HashMap<String, Boolean>> category = new ArrayList<>();
+
+            for (int i = 0; i < movimientox.size(); i++) {
+                Log.e("Movimientox", movimientox.get(i).toString());
+                category.add(movimientox.get(i).getCategoria());
+                for (Map.Entry<String, Boolean> entry : movimientox.get(i).getCategoria().entrySet()) {
+                    String key = entry.getKey();
+                    for (int j = 0; j < categoriasIDList.size(); j++) {
+                        if (key.equals(categoriasIDList.get(j))) {
+                            categoriax.add(categoriasList.get(j));
+                            break;
+                        }
+                    }
+                }
+            }
+
+
+            for (int i = 0; i < categoriax.size(); i++) {
+                Log.e("CATEGORIAX", categoriax.get(i).toString());
+            }
+
+            Log.e("CATEGORIAX", categoriax.get(0).toString());
+
+            Log.e("PRUEBA", "PRUEBA");
+
+            gastos = new ArrayList<>();
+            gastos.clear();
+            for (int i = 0; i < movimientox.size(); i++) {
+
+                int image = 0;
+                switch (categoriax.get(i).getNombre()) {
+                    case "Comida":
+                        image = 0;
+                        break;
+                    case "Transporte":
+                        image = 1;
+                        break;
+                    case "Vestimenta":
+                        image = 2;
+                        break;
+                    case "Salud":
+                        image = 5;
+                        break;
+                    case "Entretenimiento":
+                        image = 4;
+                        break;
+                    case "Hogar":
+                        image = 3;
+                        break;
+                    case "Cosmeticos":
+                        image = 6;
+                        break;
+                    case "Viajes":
+                        image = 7;
+                        break;
+                    case "Otros":
+                        image = 8;
+                        break;
+                    default:
+                        image = 0;
+                        break;
+                }
+                Log.e("MONTO", movimientox.get(i).getMonto().toString());
+                gastos.add(new itemGasto(categoriax.get(i).getNombre(), image, movimientox.get(i).getMonto().toString()));
+            }
+
         }
-
-
-        for(int i = 0; i < categoriax.size(); i++) {
-            Log.e("CATEGORIAX", categoriax.get(i).toString());
-        }
-
-        Log.e("CATEGORIAX", categoriax.get(0).toString());
-
         recyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
-
-        Log.e("PRUEBA","PRUEBA");
-
-        gastos = new ArrayList<>();
-
-        for(int i = 0; i < movimientox.size(); i++){
-
-            int image = 0;
-            switch(categoriax.get(i).getNombre()){
-                case "Comida":
-                    image = 0;
-                    break;
-                case "Transporte":
-                    image = 1;
-                    break;
-                case "Vestimenta":
-                    image = 2;
-                    break;
-                case "Salud":
-                    image = 5;
-                    break;
-                case "Entretenimiento":
-                    image = 4;
-                    break;
-                case "Hogar":
-                    image = 3;
-                    break;
-                case "Cosmeticos":
-                    image = 6;
-                    break;
-                case "Viajes":
-                    image = 7;
-                    break;
-                case "Otros":
-                    image = 8;
-                    break;
-                default:
-                    image = 0;
-                    break;
-            }
-            Log.e("MONTO",movimientox.get(i).getMonto().toString());
-            gastos.add(new itemGasto(categoriax.get(i).getNombre(),image,movimientox.get(i).getMonto().toString()));
-        }
-
-
         mAdapter = new AdapterGastos(getActivity(), gastos);
         recyclerView.setAdapter(mAdapter);
     }
