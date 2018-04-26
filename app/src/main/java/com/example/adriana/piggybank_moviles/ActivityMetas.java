@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class ActivityMetas extends AppCompatActivity {
 
@@ -99,6 +100,7 @@ public class ActivityMetas extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ActivityMetas.this, ActivityNewgoal.class);
+                intent.putExtra("ID",id);
                 startActivity(intent);
             }
         });
@@ -119,19 +121,21 @@ public class ActivityMetas extends AppCompatActivity {
         }
         else {
 
-        for(Map.Entry<String,Boolean>entry : meta.entrySet()){
-            String key = entry.getKey();
-            for(int i = 0; i < fbmetaIDList.size(); i++) {
-                if (key.equals(fbmetaIDList.get(i))){
-                    metax.add(metasList.get(i));
-                    break;
+            for(Map.Entry<String,Boolean>entry : meta.entrySet()){
+                String key = entry.getKey();
+                for(int i = 0; i < fbmetaIDList.size(); i++) {
+                    if (key.equals(fbmetaIDList.get(i))){
+                        metax.add(metasList.get(i));
+                        break;
+                    }
                 }
             }
-        }
 
-        for(int i = 0; i<metax.size(); i++){
-            metas.add(new itemMeta(metax.get(i).getNombre(),"70%", 70));
-        }}
+            for(int i = 0; i<metax.size(); i++){
+                Random rand = new Random();
+                int valrand= rand.nextInt(100);
+                metas.add(new itemMeta(metax.get(i).getNombre(),""+valrand+"%", valrand));
+            }}
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new AdapterMetas(this,metas);

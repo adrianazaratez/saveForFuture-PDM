@@ -43,14 +43,14 @@ public class AdapterMetas extends RecyclerView.Adapter<AdapterMetas.ViewHolder>{
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mProductTitle;
         public TextView mProductPercentage;
-       // public ImageView mProductImage;
+        // public ImageView mProductImage;
         CircularProgressBar mProgressBar;
 
         public ViewHolder(View v) {
             super(v);
             mProductTitle = (TextView) v.findViewById(R.id.item_meta_name);
             mProductPercentage = (TextView) v.findViewById(R.id.item_meta_percentage) ;
-     //       mProductImage = (ImageView) v.findViewById(R.id.item_meta_image);
+            //       mProductImage = (ImageView) v.findViewById(R.id.item_meta_image);
             mProgressBar = (CircularProgressBar)v.findViewById(R.id.item_meta_progressbar);
         }}
 
