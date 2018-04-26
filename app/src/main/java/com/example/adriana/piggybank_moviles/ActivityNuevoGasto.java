@@ -108,6 +108,7 @@ public class ActivityNuevoGasto extends AppCompatActivity {
                 Intent intent = new Intent(ActivityNuevoGasto.this, ActivityGastos.class);
                 intent.putExtra("ID",id);
                 startActivity(intent);
+                finish();
             }
         });
     }

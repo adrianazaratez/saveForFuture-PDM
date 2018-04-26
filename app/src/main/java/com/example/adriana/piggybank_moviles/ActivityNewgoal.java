@@ -108,6 +108,7 @@ public class ActivityNewgoal extends AppCompatActivity {
                 Intent intent = new Intent(ActivityNewgoal.this, ActivityMetas.class);
                 intent.putExtra("ID",id);
                 startActivity(intent);
+                finish();
 
             }
         });
