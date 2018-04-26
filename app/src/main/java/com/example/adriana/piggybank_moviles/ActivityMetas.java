@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 public class ActivityMetas extends AppCompatActivity {
 
@@ -100,7 +99,6 @@ public class ActivityMetas extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ActivityMetas.this, ActivityNewgoal.class);
-                intent.putExtra("ID",id);
                 startActivity(intent);
             }
         });
@@ -131,10 +129,8 @@ public class ActivityMetas extends AppCompatActivity {
             }
         }
 
-            for(int i = 0; i<metax.size(); i++){
-                Random rand = new Random();
-                int valrand= rand.nextInt(100);
-            metas.add(new itemMeta(metax.get(i).getNombre(),metax.get(i).getCantidad().toString(), valrand));
+        for(int i = 0; i<metax.size(); i++){
+            metas.add(new itemMeta(metax.get(i).getNombre(),"70%", 70));
         }}
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(mLayoutManager);
