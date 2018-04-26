@@ -134,7 +134,7 @@ public class ActivityMetas extends AppCompatActivity {
             for(int i = 0; i<metax.size(); i++){
                 Random rand = new Random();
                 int valrand= rand.nextInt(100);
-            metas.add(new itemMeta(metax.get(i).getNombre(),""+valrand+"%", valrand));
+            metas.add(new itemMeta(metax.get(i).getNombre(),metax.get(i).getCantidad().toString(), valrand));
         }}
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(mLayoutManager);
