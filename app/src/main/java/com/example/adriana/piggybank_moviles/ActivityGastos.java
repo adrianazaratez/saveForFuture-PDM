@@ -146,6 +146,3 @@ public class ActivityGastos extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
-
-
-
