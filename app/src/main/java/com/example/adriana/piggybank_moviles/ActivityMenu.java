@@ -30,7 +30,11 @@ public class ActivityMenu extends AppCompatActivity {
         estadisticas = findViewById(R.id.activity_menu_estadisticas);
         retoDia = findViewById(R.id.activity_menu_reto);
 
-        id = getIntent().getExtras().getString("ID");
+       // id = getIntent().getExtras().getString("ID");
+
+        SharedPreferences prefs = getSharedPreferences("com.iteso.SAVEFF_USER_PREFERENCES", Context.MODE_PRIVATE);
+        Boolean bandActivity = prefs.getBoolean("flag", false);
+        id = prefs.getString("uID", null);
 
         if(id == null){
             Intent intent = new Intent(ActivityMenu.this,ActivityMain.class);
@@ -61,6 +65,7 @@ public class ActivityMenu extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(ActivityMenu.this,ActivityIngresos.class);
+                    intent.putExtra("ID",id);
                     startActivity(intent);
                     // finish();
                 }
