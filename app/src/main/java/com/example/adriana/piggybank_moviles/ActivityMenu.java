@@ -64,6 +64,7 @@ public class ActivityMenu extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(ActivityMenu.this,ActivityIngresos.class);
+                    intent.putExtra("ID",id);
                     startActivity(intent);
                     // finish();
                 }
@@ -73,6 +74,7 @@ public class ActivityMenu extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(ActivityMenu.this,ActivityEstadisticas.class);
+                    intent.putExtra("ID",id);
                     startActivity(intent);
                     // finish();
                 }

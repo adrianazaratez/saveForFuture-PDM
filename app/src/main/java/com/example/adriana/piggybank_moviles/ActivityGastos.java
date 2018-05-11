@@ -140,7 +140,9 @@ public class ActivityGastos extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_logOut:
-                Intent intent2= new Intent(ActivityGastos.this,ActivityMain.class); startActivity(intent2);
+                Intent intent2= new Intent(ActivityGastos.this,ActivityMain.class);
+                intent2.putExtra("ID",id);
+                startActivity(intent2);
                 finish();
                 return true;
         }

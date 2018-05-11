@@ -26,6 +26,12 @@ import java.util.ArrayList;
 
 public class ActivityEstadisticas extends AppCompatActivity {
 
+    String id;
+    FragmentEstadisticasMonth fragmentEstadisticasMonth;
+    FragmentEstadisticasWeek fragmentEstadisticasWeek;
+    FragmentEstadisticasToday fragmentEstadisticasToday;
+    private static final int TOTAL_PAGES = 3;
+
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -53,51 +59,13 @@ public class ActivityEstadisticas extends AppCompatActivity {
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
+        id = getIntent().getExtras().getString("ID");
+
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         tabLayout.setupWithViewPager(mViewPager);
 
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public PlaceholderFragment() {
-        }
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_activity_estadisticas, container, false);
-            RecyclerView recyclerView = rootView.findViewById(R.id.fragmentRecyclerView);
-
-            recyclerView.setHasFixedSize(true);
-            LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-            recyclerView.setLayoutManager(mLayoutManager);
-
-            return rootView;
-        }
     }
 
     /**
@@ -112,21 +80,41 @@ public class ActivityEstadisticas extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return PlaceholderFragment.newInstance(position + 1);
-        };
+            switch (position){
+                case 0:
+                    if( fragmentEstadisticasToday== null){
+                        fragmentEstadisticasToday = new FragmentEstadisticasToday(id);
+                    }
+                    return fragmentEstadisticasToday;
+                case 1:
+                    if( fragmentEstadisticasWeek== null){
+                        fragmentEstadisticasWeek = new FragmentEstadisticasWeek(id);
+                    }
+                    return fragmentEstadisticasWeek;
+                case 2:
+                    if( fragmentEstadisticasMonth== null){
+                        fragmentEstadisticasMonth = new FragmentEstadisticasMonth(id);
+                    }
+                    return fragmentEstadisticasMonth;
+                default:
+                    return new FragmentEstadisticasToday(id);
 
-        @Override
-        public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            }
         }
 
         @Override
+        public int getCount () {
+            return TOTAL_PAGES;
+        }
+
         public CharSequence getPageTitle(int position) {
-            switch (position){
-                case 0: return "HOY";
-                case 1: return "SEMANA";
-                case 2: return "MES";
+            switch (position) {
+                case 0:
+                    return getString(R.string.title_section1).toUpperCase();
+                case 1:
+                    return getString(R.string.title_section2).toUpperCase();
+                case 2:
+                    return getString(R.string.title_section3).toUpperCase();
             }
             return null;
         }
@@ -144,6 +132,7 @@ public class ActivityEstadisticas extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.action_logOut:
                 Intent intent2= new Intent(ActivityEstadisticas.this,ActivityMain.class); startActivity(intent2);
+                intent2.putExtra("ID",id);
                 finish();
                 return true;
         }
