@@ -10,25 +10,9 @@
     android:background="#ffffff"
     tools:context="com.example.adriana.piggybank_moviles.ActivityRetoDia">
 
-    <TextView
+    <ImageSwitcher
+        android:id="@+id/image_switcher"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="RETO DEL DÍA"
-        android:textSize="30dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textStyle="bold"/>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/retodias"/>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/retodia"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

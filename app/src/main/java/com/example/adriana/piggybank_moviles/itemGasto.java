@@ -12,14 +12,16 @@ public class itemGasto implements Parcelable {
     private String name;
     private Integer image;
     private String monto;
+    private int progress;
 
     public itemGasto() {
     }
 
-    public itemGasto(String name, Integer image, String monto) {
+    public itemGasto(String name, Integer image, String monto, int progress) {
         this.name = name;
         this.image = image;
         this.monto = monto;
+        this.progress = progress;
     }
 
     @Override
@@ -43,6 +45,10 @@ public class itemGasto implements Parcelable {
         return image;
     }
 
+    public int getProgress() {
+        return progress;
+    }
+
     public void setImage(Integer image) {
         this.image = image;
     }
@@ -55,6 +61,9 @@ public class itemGasto implements Parcelable {
         this.monto = monto;
     }
 
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
 
     @Override
     public int describeContents() {
@@ -66,12 +75,14 @@ public class itemGasto implements Parcelable {
         dest.writeString(this.name);
         dest.writeValue(this.image);
         dest.writeString(this.monto);
+        dest.writeInt(this.progress);
     }
 
     protected itemGasto(Parcel in) {
         this.name = in.readString();
         this.image = (Integer) in.readValue(Integer.class.getClassLoader());
         this.monto = in.readString();
+        this.progress = in.readInt();
     }
 
     public static final Creator<itemGasto> CREATOR = new Creator<itemGasto>() {
