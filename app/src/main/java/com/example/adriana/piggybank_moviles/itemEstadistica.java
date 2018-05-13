@@ -3,8 +3,6 @@ package com.example.adriana.piggybank_moviles;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.github.mikephil.charting.charts.PieChart;
-
 import java.util.Arrays;
 
 /**

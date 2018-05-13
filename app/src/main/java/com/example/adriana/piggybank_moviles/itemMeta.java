@@ -8,16 +8,10 @@ public class itemMeta implements Parcelable {
     private String name, porcentaje;
     private int progress;
 
-    public String getName() {
-        return name;
-    }
-
-    public String getPorcentaje() {
-        return porcentaje;
-    }
-
-    public int getProgress() {
-        return progress;
+    public itemMeta(String name, String porcentaje, int progress) {
+        this.name = name;
+        this.porcentaje = porcentaje;
+        this.progress = progress;
     }
 
     @Override
@@ -29,18 +23,24 @@ public class itemMeta implements Parcelable {
                 '}';
     }
 
-    public itemMeta(String name, String porcentaje, int progress) {
-        this.name = name;
-        this.porcentaje = porcentaje;
-        this.progress = progress;
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public String getPorcentaje() {
+        return porcentaje;
+    }
+
     public void setPorcentaje(String porcentaje) {
         this.porcentaje = porcentaje;
+    }
+
+    public int getProgress() {
+        return progress;
     }
 
     public void setProgress(int progress) {
@@ -65,7 +65,7 @@ public class itemMeta implements Parcelable {
         this.progress = in.readInt();
     }
 
-    public static final Parcelable.Creator<itemMeta> CREATOR = new Parcelable.Creator<itemMeta>() {
+    public static final Creator<itemMeta> CREATOR = new Creator<itemMeta>() {
         @Override
         public itemMeta createFromParcel(Parcel source) {
             return new itemMeta(source);
