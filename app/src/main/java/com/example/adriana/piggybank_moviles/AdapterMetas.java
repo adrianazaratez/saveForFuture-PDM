@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -57,9 +59,10 @@ public class AdapterMetas extends RecyclerView.Adapter<AdapterMetas.ViewHolder>{
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
+        DecimalFormat df = new DecimalFormat("0.00");
         holder.mProductTitle.setText(mDataSet.get(position).getName());
-        holder.mProductPercentage.setText(mDataSet.get(position).getPorcentaje());
-        holder.mProgressBar.setProgress(mDataSet.get(position).getProgress());
+        holder.mProductPercentage.setText("" + df.format((mDataSet.get(position).getAhorrado() / mDataSet.get(position).getCantidad()) * 100) + "%");
+        holder.mProgressBar.setProgress((float) ((mDataSet.get(position).getAhorrado() / mDataSet.get(position).getCantidad()) * 100));
         holder.mProgressBar.setColor(ContextCompat.getColor(getContext(), R.color.progressBarColor));
         holder.mProgressBar.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.backgroundProgressBarColor));
         holder.mProgressBar.setProgressBarWidth(7);
