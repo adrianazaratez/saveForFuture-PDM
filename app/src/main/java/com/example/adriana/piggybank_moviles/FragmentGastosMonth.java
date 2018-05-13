@@ -197,7 +197,7 @@ public class FragmentGastosMonth extends android.support.v4.app.Fragment{
                 Log.e("CATEGORIAX", categoriax.get(i).toString());
             }
 
-            Log.e("CATEGORIAX", categoriax.get(0).toString());
+       //     Log.e("CATEGORIAX", categoriax.get(0).toString());
 
             Log.e("PRUEBA", "PRUEBA");
 
