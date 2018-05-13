@@ -2,14 +2,10 @@ package com.example.adriana.piggybank_moviles;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.adriana.piggybank_moviles.beans.Categoria;
 import com.example.adriana.piggybank_moviles.beans.Meta;
 import com.example.adriana.piggybank_moviles.beans.Usuario;
 import com.google.firebase.database.DataSnapshot;
@@ -27,8 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
@@ -158,6 +153,24 @@ public class ActivityMetas extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        itemMeta meta = data.getParcelableExtra("Detalle Meta");
+        Iterator<itemMeta> iterator = metas.iterator();
+        int position = 0;
+        while(iterator.hasNext()){
+            itemMeta item = iterator.next();
+            if(item.getName() == meta.getName()){
+                metas.set(position, meta);
+                break;
+            }
+            position++;
+        }
+        mAdapter.notifyDataSetChanged();
+
     }
 }
 
