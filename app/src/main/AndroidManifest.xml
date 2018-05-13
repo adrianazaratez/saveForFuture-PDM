@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.adriana.piggybank_moviles">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -51,19 +51,21 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ActivityMetas" />
 
-        <!--<activity android:name=".itemMeta"></activity>-->
+        <!-- <activity android:name=".itemMeta"></activity> -->
         <receiver
             android:name=".MyWidgetReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
+
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_provider_info">
-            </meta-data>
+                android:resource="@xml/widget_provider_info"></meta-data>
         </receiver>
+
+        <activity android:name=".ActivityMetaDetail"></activity>
     </application>
 
 </manifest>

@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 public class Meta implements Parcelable {
     String id;
-    Long cantidad;
+    double cantidad, ahorrado;
     String fechaLimite;
     String nombre;
     HashMap<String,Boolean> categoria;
@@ -20,12 +20,26 @@ public class Meta implements Parcelable {
     public Meta(){
 
     }
-    public Meta(String id, Long cantidad, String fechaLimite, String nombre, HashMap<String, Boolean> categoria) {
+
+    public Meta(String id, double cantidad, double ahorrado, String fechaLimite, String nombre, HashMap<String, Boolean> categoria) {
         this.id = id;
         this.cantidad = cantidad;
+        this.ahorrado = ahorrado;
         this.fechaLimite = fechaLimite;
         this.nombre = nombre;
         this.categoria = categoria;
+    }
+
+    @Override
+    public String toString() {
+        return "Meta{" +
+                "id='" + id + '\'' +
+                ", cantidad=" + cantidad +
+                ", ahorrado=" + ahorrado +
+                ", fechaLimite='" + fechaLimite + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", categoria=" + categoria +
+                '}';
     }
 
     public String getId() {
@@ -36,12 +50,20 @@ public class Meta implements Parcelable {
         this.id = id;
     }
 
-    public Long getCantidad() {
+    public double getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(Long cantidad) {
+    public void setCantidad(double cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public double getAhorrado() {
+        return ahorrado;
+    }
+
+    public void setAhorrado(double ahorrado) {
+        this.ahorrado = ahorrado;
     }
 
     public String getFechaLimite() {
@@ -68,6 +90,7 @@ public class Meta implements Parcelable {
         this.categoria = categoria;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
@@ -76,7 +99,8 @@ public class Meta implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.id);
-        dest.writeValue(this.cantidad);
+        dest.writeDouble(this.cantidad);
+        dest.writeDouble(this.ahorrado);
         dest.writeString(this.fechaLimite);
         dest.writeString(this.nombre);
         dest.writeSerializable(this.categoria);
@@ -84,7 +108,8 @@ public class Meta implements Parcelable {
 
     protected Meta(Parcel in) {
         this.id = in.readString();
-        this.cantidad = (Long) in.readValue(Long.class.getClassLoader());
+        this.cantidad = in.readDouble();
+        this.ahorrado = in.readDouble();
         this.fechaLimite = in.readString();
         this.nombre = in.readString();
         this.categoria = (HashMap<String, Boolean>) in.readSerializable();
