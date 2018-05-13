@@ -41,11 +41,7 @@ public class ActivityIngresos extends AppCompatActivity {
 
     String id;
 
-<<<<<<< HEAD
-     @Override
-=======
     @Override
->>>>>>> Estadísticas teminado Adriana [01]
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingresos);

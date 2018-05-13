@@ -113,10 +113,10 @@ public class ActivityGastos extends AppCompatActivity {
             }
         }
 
-            @Override
-            public int getCount () {
-                return TOTAL_PAGES;
-            }
+        @Override
+        public int getCount () {
+            return TOTAL_PAGES;
+        }
 
         public CharSequence getPageTitle(int position) {
             switch (position) {

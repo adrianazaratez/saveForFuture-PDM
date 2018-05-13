@@ -36,7 +36,7 @@ import java.util.Map;
 public class FragmentGastosWeek extends android.support.v4.app.Fragment{
     private AdapterGastos mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ArrayList<itemGasto> gastos;
+    private ArrayList<itemGasto> gastos = new ArrayList<>();
     RecyclerView recyclerView;
 
     DatabaseReference databaseReference;
@@ -69,9 +69,9 @@ public class FragmentGastosWeek extends android.support.v4.app.Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_gastos_week, container, false);
+        View view = inflater.inflate(R.layout.fragment_gastos_month, container, false);
         recyclerView = (RecyclerView)
-                view.findViewById(R.id.fragment_gastos_week_recycler_view);
+                view.findViewById(R.id.fragment_gastos_month_recycler_view);
 
 
         fecha = new Date();
@@ -91,8 +91,6 @@ public class FragmentGastosWeek extends android.support.v4.app.Fragment{
         calendar.add(Calendar.DATE, -7);
         date2 = calendar.getTime();
 
-
-
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -104,6 +102,7 @@ public class FragmentGastosWeek extends android.support.v4.app.Fragment{
                 movimientosIDList.clear();
                 categoriasList.clear();
                 categoriasIDList.clear();
+                gastos.clear();
                 for(DataSnapshot snapshot : dataSnapshot.child("user").getChildren()){
                     Usuario value = snapshot.getValue(Usuario.class);
                     ids = snapshot.getKey();
@@ -145,6 +144,7 @@ public class FragmentGastosWeek extends android.support.v4.app.Fragment{
         for(int i = 0; i < userIDList.size(); i++) {
             if (id.equals(userIDList.get(i))) {
                 user = usersList.get(i);
+                Log.e("USUARIO ACTUAL:",user.toString());
                 break;
             }
         }
@@ -152,7 +152,7 @@ public class FragmentGastosWeek extends android.support.v4.app.Fragment{
         movimiento = user.getMovimiento();
 
         if(movimiento == null){
-            Toast.makeText(getContext(),"No tienes gastos de esta semana",Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(),"No tienes gastos de este mes",Toast.LENGTH_LONG).show();
             gastos = new ArrayList<>();
         } else {
             for (Map.Entry<String, Boolean> entry : movimiento.entrySet()) {
@@ -194,60 +194,177 @@ public class FragmentGastosWeek extends android.support.v4.app.Fragment{
                 }
             }
 
-
             for (int i = 0; i < categoriax.size(); i++) {
                 Log.e("CATEGORIAX", categoriax.get(i).toString());
             }
 
-        //    Log.e("CATEGORIAX", categoriax.get(0).toString());
-
-
-
             Log.e("PRUEBA", "PRUEBA");
 
             gastos = new ArrayList<>();
+            gastos.clear();
+
+            //PRUEBA PARA QUE NO SE REPITAN
+            String []categorias = new String[categoriax.size()];
+            float [] gasto = new float[movimientox.size()];
+
+            float comidaCount = 0f;
+            float transporteCount = 0f;
+            float vestimentaCount = 0f;
+            float saludCount = 0f;
+            float entretenimientoCount = 0f;
+            float hogarCount = 0f;
+            float otrosCount = 0f;
+            float cosmeticosCount = 0f;
+            float viajesCount = 0f;
+            ////**********************
 
             for (int i = 0; i < movimientox.size(); i++) {
+                //**********
+                categorias[i] = categoriax.get(i).getNombre();
+                gasto[i] = movimientox.get(i).getMonto().floatValue();
+            }
 
+            for(int b = 0; b < categorias.length; b++){
+                switch (categorias[b]){
+                    case "Comida":
+                        comidaCount = comidaCount + gasto[b];
+                        break;
+                    case "Transporte":
+                        transporteCount = transporteCount + gasto[b];
+                        break;
+                    case "Vestimenta":
+                        vestimentaCount = vestimentaCount + gasto[b];
+                        break;
+                    case "Salud":
+                        saludCount = saludCount + gasto[b];
+                        break;
+                    case "Entretenimiento":
+                        entretenimientoCount = entretenimientoCount + gasto[b];
+                        break;
+                    case "Hogar":
+                        hogarCount = hogarCount + gasto[b];
+                        break;
+                    case "Cosmeticos":
+                        cosmeticosCount = cosmeticosCount + gasto[b];
+                        break;
+                    case "Viajes":
+                        viajesCount = viajesCount + gasto[b];
+                        break;
+                    case "Otros":
+                        otrosCount = otrosCount + gasto[b];
+                        break;
+                    default:
+                        comidaCount = comidaCount + gasto[b];
+                        break;
+                }
+            }
+            //añadir el resumen de gastos por categorias
+            ArrayList<String> newCategories = new ArrayList<>();
+            ArrayList<Float> newGastos = new ArrayList<>();
+
+            if(comidaCount!= 0){
+                newCategories.add("Comida");
+                newGastos.add(comidaCount);
+            }
+            if(transporteCount!= 0){
+                newCategories.add("Transporte");
+                newGastos.add(transporteCount);
+            }
+            if(vestimentaCount!= 0){
+                newCategories.add("Vestimenta");
+                newGastos.add(vestimentaCount);
+            }
+            if(saludCount!= 0){
+                newCategories.add("Salud");
+                newGastos.add(saludCount);
+            }
+            if(entretenimientoCount!= 0){
+                newCategories.add("Entretenimiento");
+                newGastos.add(entretenimientoCount);
+            }
+            if(hogarCount!= 0){
+                newCategories.add("Hogar");
+                newGastos.add(hogarCount);
+            }
+            if(cosmeticosCount!= 0){
+                newCategories.add("Cosmeticos");
+                newGastos.add(cosmeticosCount);
+            }
+            if(viajesCount!= 0){
+                newCategories.add("Viajes");
+                newGastos.add(viajesCount);
+            }
+            if(otrosCount!= 0){
+                newCategories.add("Otros");
+                newGastos.add(otrosCount);
+            }
+
+            float[] gastosFinal = new float[newGastos.size()];
+            String[] categoriasFinal = new String[newCategories.size()];
+            float ingresos = user.getSalario().floatValue();
+            double setPorcentaje = 0;
+
+            for(int i = 0; i < gastosFinal.length; i++){
+                gastosFinal[i] = newGastos.get(i).floatValue();
+                categoriasFinal[i] = newCategories.get(i).toString();
+            }
+            //
+            //some changes in for
+            for (int i = 0; i < categoriasFinal.length; i++) {
                 int image = 0;
-                switch (categoriax.get(i).getNombre()) {
+                switch (categoriasFinal[i]) {
                     case "Comida":
                         image = 0;
+                        setPorcentaje = .20;
                         break;
                     case "Transporte":
                         image = 1;
+                        setPorcentaje = .15;
                         break;
                     case "Vestimenta":
                         image = 2;
+                        setPorcentaje = .05;
                         break;
                     case "Salud":
                         image = 5;
+                        setPorcentaje = .10;
                         break;
                     case "Entretenimiento":
                         image = 4;
+                        setPorcentaje = .15;
                         break;
                     case "Hogar":
                         image = 3;
+                        setPorcentaje = .15;
                         break;
                     case "Cosmeticos":
                         image = 6;
+                        setPorcentaje = .05;
                         break;
                     case "Viajes":
                         image = 7;
+                        setPorcentaje = .1;
                         break;
                     case "Otros":
+                        setPorcentaje = .05;
                         image = 8;
                         break;
                     default:
                         image = 0;
+                        setPorcentaje = .10;
                         break;
                 }
-                Log.e("MONTO", movimientox.get(i).getMonto().toString());
-                gastos.add(new itemGasto(categoriax.get(i).getNombre(), image, movimientox.get(i).getMonto().toString()));
+                int porcentajefinal = (int) ((gastosFinal[i]*100)/((ingresos/7)*setPorcentaje));
+                if(porcentajefinal > 100) {
+                    porcentajefinal = 100;
+                    Toast.makeText(getContext(),"Has llegado al límite de lo establecido para gastar en " + categoriasFinal[i] + ". " +
+                            "Te sugerimos ahorrar en esta categoría.",Toast.LENGTH_LONG).show();
+                }
+                gastos.add(new itemGasto(categoriasFinal[i], image, Float.toString(gastosFinal[i]), porcentajefinal));
             }
         }
-        recyclerView.setHasFixedSize(true);
 
+        recyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new AdapterGastos(getActivity(), gastos);
