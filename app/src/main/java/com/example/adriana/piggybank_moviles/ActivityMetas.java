@@ -1,5 +1,6 @@
 package com.example.adriana.piggybank_moviles;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -128,9 +129,8 @@ public class ActivityMetas extends AppCompatActivity {
             }
 
             for(int i = 0; i<metax.size(); i++){
-                Random rand = new Random();
-                int valrand= rand.nextInt(100);
-                metas.add(new itemMeta(metax.get(i).getNombre(),""+valrand+"%", valrand));
+                metas.add(new itemMeta(metax.get(i).getNombre(),id, metax.get(i).getCantidad(),metax.get(i).getAhorrado(), metax.get(i).getFechaLimite()));
+                Log.e("ahorrado:",""+ metax.get(i).getAhorrado());
             }}
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -158,19 +158,23 @@ public class ActivityMetas extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        itemMeta meta = data.getParcelableExtra("Detalle Meta");
-        Iterator<itemMeta> iterator = metas.iterator();
-        int position = 0;
-        while(iterator.hasNext()){
-            itemMeta item = iterator.next();
-            if(item.getName() == meta.getName()){
-                metas.set(position, meta);
-                break;
-            }
-            position++;
+        switch (requestCode){
+            case 9999:
+                if(resultCode == Activity.RESULT_OK){
+                    itemMeta meta = data.getParcelableExtra("Detalle Meta");
+                    if(meta != null){
+                        Iterator<itemMeta> iterator = metas.iterator();
+                        int position = 0;
+                        while(iterator.hasNext()){
+                            itemMeta item = iterator.next();
+                            metas.set(position, meta);
+                            position++;
+                        }
+                    }
+                }
         }
-        mAdapter.notifyDataSetChanged();
 
+        mAdapter.notifyDataSetChanged();
     }
 }
 
