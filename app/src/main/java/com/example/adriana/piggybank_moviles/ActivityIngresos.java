@@ -207,9 +207,4 @@ public class ActivityIngresos extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    public void showDialog(){
-//        DialogFragment newDialog = new DialogIngresos();
-//        newDialog.show(getFragmentManager(), "ingresos");
-//    }
-
 }

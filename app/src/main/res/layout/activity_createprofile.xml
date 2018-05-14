@@ -17,13 +17,14 @@
 
     <ImageView
         android:id="@+id/activity_createprofile_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:paddingHorizontal="20dp"
         android:scaleType="fitCenter"
         android:src="@drawable/user"/>
 
     <EditText
+        android:paddingTop="50dp"
         android:id="@+id/activity_createprofile_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Correo electronico"
+        android:inputType="textEmailAddress"
         android:drawableLeft="@android:drawable/sym_action_email"/>
 
     <RelativeLayout
@@ -70,6 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Contraseña"
+        android:inputType="textPassword"
         android:drawableLeft="@android:drawable/ic_lock_idle_lock"/>
 
     <EditText
@@ -77,6 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Confirmar contraseña"
+        android:inputType="textPassword"
         android:drawableLeft="@android:drawable/ic_lock_idle_lock"/>
 
     <RelativeLayout
@@ -90,7 +94,8 @@
             android:src="@drawable/arrow"
             android:scaleType="centerInside"
             android:background="@android:color/transparent"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
 
