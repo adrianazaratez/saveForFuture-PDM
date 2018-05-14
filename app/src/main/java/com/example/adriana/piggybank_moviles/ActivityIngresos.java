@@ -41,7 +41,7 @@ public class ActivityIngresos extends AppCompatActivity {
 
     String id;
 
-    @Override
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingresos);
@@ -50,25 +50,25 @@ public class ActivityIngresos extends AppCompatActivity {
         addAhorros = findViewById(R.id.activity_ingresos_btnahorro);
         nuevoingreso = findViewById(R.id.nuevo_ingreso);
 
-        id = getIntent().getExtras().getString("ID");
+         // id = getIntent().getExtras().getString("ID");
 
-        SharedPreferences prefs = getSharedPreferences("com.iteso.SAVEFF_USER_PREFERENCES", Context.MODE_PRIVATE);
-        Boolean bandActivity = prefs.getBoolean("flag", false);
-     //   id = prefs.getString("uID", null);
+         SharedPreferences prefs = getSharedPreferences("com.iteso.SAVEFF_USER_PREFERENCES", Context.MODE_PRIVATE);
+         Boolean bandActivity = prefs.getBoolean("flag", false);
+         id = prefs.getString("uID", null);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+         databaseReference = FirebaseDatabase.getInstance().getReference();
 
         databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String value = dataSnapshot.getValue(String.class);
-                Log.d("FIREBASE", "Value is: " + value);
-                ingresos.setText(value);
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
+             @Override
+             public void onDataChange(DataSnapshot dataSnapshot) {
+                 String value = dataSnapshot.getValue(String.class);
+                 Log.d("FIREBASE", "Value is: " + value);
+                 ingresos.setText(value);
+             }
+             @Override
+             public void onCancelled(DatabaseError databaseError) {
+             }
+         });
 
         addAhorros.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,5 +138,6 @@ public class ActivityIngresos extends AppCompatActivity {
 //        DialogFragment newDialog = new DialogIngresos();
 //        newDialog.show(getFragmentManager(), "ingresos");
 //    }
+
 
 }

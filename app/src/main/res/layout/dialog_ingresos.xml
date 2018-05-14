@@ -14,7 +14,6 @@
         android:textColor="@android:color/white"/>
     <EditText
         android:id="@+id/username"
-        android:inputType="textEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -28,14 +27,16 @@
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/fab_margin">
         <Button
+            android:id="@+id/dialog_cancel"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Cancelar"/>
+            android:text="@string/cancel"/>
         <Button
+            android:id="@+id/dialog_accept"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Aceptar"/>
+            android:text="@string/accept"/>
     </LinearLayout>
 </LinearLayout>

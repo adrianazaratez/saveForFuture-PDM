@@ -40,7 +40,6 @@ public class ActivityNuevoGasto extends AppCompatActivity {
         categoria = findViewById(R.id.activity_nuevogasto_spinner);
         cantidad = findViewById(R.id.activity_nuevogasto_cantidad);
 
-       // id = getIntent().getExtras().getString("ID");
         SharedPreferences prefs = getSharedPreferences("com.iteso.SAVEFF_USER_PREFERENCES", Context.MODE_PRIVATE);
         Boolean bandActivity = prefs.getBoolean("flag", false);
         id = prefs.getString("uID", null);

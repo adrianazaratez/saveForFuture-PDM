@@ -1,7 +1,9 @@
 package com.example.adriana.piggybank_moviles;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -140,8 +142,14 @@ public class ActivityGastos extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_logOut:
+
+                SharedPreferences.Editor editor = getSharedPreferences("com.iteso.SAVEFF_USER_PREFERENCES", Context.MODE_PRIVATE).edit();
+                editor.clear();
+                editor.apply();
+
                 Intent intent2= new Intent(ActivityGastos.this,ActivityMain.class);
-                intent2.putExtra("ID",id);
+                intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 startActivity(intent2);
                 finish();
                 return true;
