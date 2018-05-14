@@ -30,7 +30,6 @@ public class ActivityMenu extends AppCompatActivity {
         estadisticas = findViewById(R.id.activity_menu_estadisticas);
         retoDia = findViewById(R.id.activity_menu_reto);
 
-
         SharedPreferences prefs = getSharedPreferences("com.iteso.SAVEFF_USER_PREFERENCES", Context.MODE_PRIVATE);
         Boolean bandActivity = prefs.getBoolean("flag", false);
         id = prefs.getString("uID", null);
