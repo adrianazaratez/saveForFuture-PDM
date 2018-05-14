@@ -136,6 +136,11 @@ public class ActivityEstadisticas extends AppCompatActivity {
                 intent2.putExtra("ID",id);
                 finish();
                 return true;
+            case R.id.action_about:
+                Intent intent3= new Intent(ActivityEstadisticas.this,ActivityInfoApp.class);
+                startActivity(intent3);
+                //finish();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

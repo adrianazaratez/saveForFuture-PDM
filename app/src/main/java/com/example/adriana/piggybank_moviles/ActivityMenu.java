@@ -105,11 +105,15 @@ public class ActivityMenu extends AppCompatActivity {
                 SharedPreferences.Editor editor = getSharedPreferences("com.iteso.SAVEFF_USER_PREFERENCES", Context.MODE_PRIVATE).edit();
                 editor.clear();
                 editor.apply();
-
                 Intent intent2= new Intent(ActivityMenu.this,ActivityMain.class);
                 intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent2);
                 finish();
+                return true;
+            case R.id.action_about:
+                Intent intent3= new Intent(ActivityMenu.this,ActivityInfoApp.class);
+                startActivity(intent3);
+                //finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);

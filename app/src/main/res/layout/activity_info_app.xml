@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.adriana.piggybank_moviles.ActivityInfoApp">
+
+    <TextView
+        android:id="@+id/info_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:text="El equipo de Save for Future ha establecido los porcentajes ideales que un usuario promedio de la aplicación debería designar a cada una de las categorías en que realiza sus gastos normalmente.
+\n\nA continuación te compartimos los porcentajes establecidos para cada categoría con fines informativos.
+\n\n Comida                        20%
+\n Transporte                  15%
+\n  Vestimenta                   5%
+\n  Salud                            10%
+\n  Entretenimiento        15%
+\n  Hogar                           15%
+\n  Cosméticos                  5%
+\n  Viajes                           10%
+\n  Otros                              5%"/>
+
+</LinearLayout>

@@ -4,7 +4,7 @@
     android:layout_width="358dp"
     android:layout_height="150dp"
     android:orientation="horizontal"
-    android:background="@color/cardview_shadow_start_color">
+    android:background="@android:color/transparent">
 
     <ImageView
         android:id="@+id/widget_image"
@@ -16,34 +16,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginRight="@dimen/fab_margin"
         android:gravity="center">
 
         <TextView
             android:id="@+id/widget_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="@dimen/fab_margin"
             android:textSize="@dimen/text_margin"
-            android:text="Hoy has gastado: 500 pesos" />
-
-       <!-- <EditText
-            android:id="@+id/widget_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Cantidad de nuevo gasto"/>-->
-
-       <!-- <Spinner
-            android:id="@+id/widget_category"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:entries="@array/goals">
-        </Spinner>-->
+            android:textAlignment="center"
+            android:text="Registra siempre tus gastos ¡Siempre puedes ahorrar más que ayer!" />
 
         <Button
             android:id="@+id/widget_add"
+            android:layout_marginTop="@dimen/fab_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@color/colorPrimary"
             android:text="Ingresar nuevo gasto"/>
 
 

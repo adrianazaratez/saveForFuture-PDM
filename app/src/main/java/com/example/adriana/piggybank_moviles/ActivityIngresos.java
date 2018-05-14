@@ -130,6 +130,11 @@ public class ActivityIngresos extends AppCompatActivity {
                 startActivity(intent2);
                 finish();
                 return true;
+            case R.id.action_about:
+                Intent intent3= new Intent(ActivityIngresos.this,ActivityInfoApp.class);
+                startActivity(intent3);
+                //finish();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
