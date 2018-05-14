@@ -147,6 +147,11 @@ public class ActivityGastos extends AppCompatActivity {
                 startActivity(intent2);
                 finish();
                 return true;
+            case R.id.action_about:
+                Intent intent3= new Intent(ActivityGastos.this,ActivityInfoApp.class);
+                startActivity(intent3);
+                //finish();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

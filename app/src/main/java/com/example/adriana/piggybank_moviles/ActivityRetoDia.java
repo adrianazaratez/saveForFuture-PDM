@@ -69,6 +69,11 @@ public class ActivityRetoDia extends AppCompatActivity {
                 startActivity(intent2);
                 finish();
                 return true;
+            case R.id.action_about:
+                Intent intent3= new Intent(ActivityRetoDia.this,ActivityInfoApp.class);
+                startActivity(intent3);
+                //finish();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -106,6 +111,5 @@ public class ActivityRetoDia extends AppCompatActivity {
         if (timer != null) {
             startSlider();
         }
-
     }
 }

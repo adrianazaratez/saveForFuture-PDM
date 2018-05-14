@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ActivityNuevoGasto extends AppCompatActivity {
+
     Button ok;
     String id;
     Spinner categoria;
@@ -45,76 +47,84 @@ public class ActivityNuevoGasto extends AppCompatActivity {
         Boolean bandActivity = prefs.getBoolean("flag", false);
         id = prefs.getString("uID", null);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        //////
+        if(id == null){
+            Intent intent = new Intent(ActivityNuevoGasto.this,ActivityMain.class);
+            startActivity(intent);
+            finish();
+        } else {
 
-        Date fecha = new Date();
-        final String stringFecha = new SimpleDateFormat("MM-dd-yyyy").format(fecha);
+            databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                HashMap<String,Boolean> category = new HashMap<>();
-                category.clear();
-                String cat;
-                switch (categoria.getSelectedItem().toString()){
-                    case "Comida":
-                        cat = "b";
-                        break;
-                    case "Transporte":
-                        cat = "c";
-                        break;
-                    case "Ropa":
-                        cat = "e";
-                        break;
-                    case "Salud":
-                        cat = "f";
-                        break;
-                    case "Entretenimiento":
-                        cat = "g";
-                        break;
-                    case "Casa":
-                        cat = "h";
-                        break;
-                    case "Otros":
-                        cat = "i";
-                        break;
-                    case "Cosméticos":
-                        cat = "j";
-                        break;
-                    case "Viajes":
-                        cat = "k";
-                        break;
-                    default:
-                        cat = "b";
+            Date fecha = new Date();
+            final String stringFecha = new SimpleDateFormat("MM-dd-yyyy").format(fecha);
+
+            ok.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    HashMap<String,Boolean> category = new HashMap<>();
+                    category.clear();
+                    String cat;
+                    switch (categoria.getSelectedItem().toString()){
+                        case "Comida":
+                            cat = "b";
+                            break;
+                        case "Transporte":
+                            cat = "c";
+                            break;
+                        case "Ropa":
+                            cat = "e";
+                            break;
+                        case "Salud":
+                            cat = "f";
+                            break;
+                        case "Entretenimiento":
+                            cat = "g";
+                            break;
+                        case "Casa":
+                            cat = "h";
+                            break;
+                        case "Otros":
+                            cat = "i";
+                            break;
+                        case "Cosméticos":
+                            cat = "j";
+                            break;
+                        case "Viajes":
+                            cat = "k";
+                            break;
+                        default:
+                            cat = "b";
+                    }
+                    category.put(cat,true);
+
+                    Movimiento movimiento = new Movimiento();
+                    movimiento.setCategoria(category);
+                    movimiento.setTipo("gasto");
+                    movimiento.setFecha(stringFecha);
+                    Long x = null;
+
+                    try{
+                        x = Long.parseLong(cantidad.getText().toString());
+                    }catch(Exception e){
+                        System.out.println(e);
+                    }
+
+                    movimiento.setMonto(x);
+                    String userId = databaseReference.child("movimiento").push().getKey();
+                    databaseReference.child("movimiento").child(userId).setValue(movimiento);
+
+                    Map<String,Object> mov = new HashMap<>();
+                    mov.put(userId,true);
+                    databaseReference.child("user").child(id).child("movimiento").updateChildren(mov);
+
+
+                    Intent intent = new Intent(ActivityNuevoGasto.this, ActivityGastos.class);
+                    intent.putExtra("ID",id);
+                    startActivity(intent);
+                    finish();
                 }
-                category.put(cat,true);
-
-                Movimiento movimiento = new Movimiento();
-                movimiento.setCategoria(category);
-                movimiento.setTipo("gasto");
-                movimiento.setFecha(stringFecha);
-                Long x = null;
-
-                try{
-                    x = Long.parseLong(cantidad.getText().toString());
-                }catch(Exception e){
-                    System.out.println(e);
-                }
-
-                movimiento.setMonto(x);
-                String userId = databaseReference.child("movimiento").push().getKey();
-                databaseReference.child("movimiento").child(userId).setValue(movimiento);
-
-                Map<String,Object> mov = new HashMap<>();
-                mov.put(userId,true);
-                databaseReference.child("user").child(id).child("movimiento").updateChildren(mov);
-
-
-                Intent intent = new Intent(ActivityNuevoGasto.this, ActivityGastos.class);
-                intent.putExtra("ID",id);
-                startActivity(intent);
-                finish();
-            }
-        });
+            });
+        }
     }
 }

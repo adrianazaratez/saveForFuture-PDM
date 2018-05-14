@@ -22,36 +22,41 @@
         </activity>
         <activity
             android:name=".ActivityCategories"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ActivityCreateprofile"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ActivityGastos"
-            android:label="Gastos"/>
+        <activity
+            android:name=".ActivityGastos"
+            android:label="Gastos" />
         <activity
             android:name=".ActivityInit"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ActivityMenu" />
         <activity
             android:name=".ActivityNewgoal"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="Nueva meta"/>
-        <activity android:name=".ActivityRetoDia"
-            android:label="Reto del día"/>
-        <activity android:name=".ActivityIngresos"
-            android:label="Ingresos"/>
+            android:label="Nueva meta"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityRetoDia"
+            android:label="Reto del día" />
+        <activity
+            android:name=".ActivityIngresos"
+            android:label="Ingresos" />
         <activity
             android:name=".ActivityEstadisticas"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="Estadísticas"/>
-        <activity android:name=".ActivityNuevoGasto"
-            android:label="Nuevo gasto"/>
+            android:label="Estadisticas"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityNuevoGasto"
+            android:label="Nuevo gasto" />
         <activity
             android:name=".ActivitySplashScreen"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ActivityMetas" />
+        <activity
+            android:name=".ActivityMetas"
+            android:label="Metas" />
 
-        <!-- <activity android:name=".itemMeta"></activity> -->
         <receiver
             android:name=".MyWidgetReceiver"
             android:enabled="true"
@@ -66,6 +71,8 @@
         </receiver>
 
         <activity android:name=".ActivityMetaDetail"></activity>
+        <activity android:name=".ActivityInfoApp"></activity>
+
     </application>
 
 </manifest>

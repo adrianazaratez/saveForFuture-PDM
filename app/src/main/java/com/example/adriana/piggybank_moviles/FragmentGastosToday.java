@@ -371,4 +371,5 @@ public class FragmentGastosToday extends android.support.v4.app.Fragment{
     public void onActivityResult(int requestCode, int resutltCode, Intent data){
         super.onActivityResult(requestCode,resutltCode,data);
     }
+
 }
