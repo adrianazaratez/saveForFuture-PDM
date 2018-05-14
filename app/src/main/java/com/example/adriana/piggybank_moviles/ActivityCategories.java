@@ -178,28 +178,35 @@ public class ActivityCategories extends AppCompatActivity{
 
     public void onClickFood(View v){
         foodcont++;
+        food.setImageResource(R.drawable.foodchecked);
     }
 
     public void transportonClick(View v){
         transportcont++;
+        transport.setImageResource(R.drawable.transportchecked);
     }
 
     public void clothingonClick(View view){
         clothingcont++;
+        clothing.setImageResource(R.drawable.clothechecked);
     }
 
     public void otheronClick(View view){
         othercont++;
+        other.setImageResource(R.drawable.otherschecked);
     }
     public void entertainmentonClick(View view){
         entertainmentcont++;
+        entertainment.setImageResource(R.drawable.entretainmentchecked);
     }
 
     public void healthonClick(View view){
         healthcont++;
+        health.setImageResource(R.drawable.healthchecked);
     }
 
     public void homeonClick(View view){
         homecont++;
+        home.setImageResource(R.drawable.homechecked);
     }
 }
