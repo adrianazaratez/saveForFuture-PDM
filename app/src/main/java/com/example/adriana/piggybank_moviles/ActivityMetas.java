@@ -98,7 +98,7 @@ public class ActivityMetas extends AppCompatActivity {
                 Intent intent = new Intent(ActivityMetas.this, ActivityNewgoal.class);
                 intent.putExtra("ID",id);
                 startActivity(intent);
-                finish();
+          //      finish();
             }
         });
 

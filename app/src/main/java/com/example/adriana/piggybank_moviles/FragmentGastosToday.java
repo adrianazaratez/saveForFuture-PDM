@@ -148,7 +148,7 @@ public class FragmentGastosToday extends android.support.v4.app.Fragment{
         movimiento = user.getMovimiento();
 
         if(movimiento == null){
-            Toast.makeText(getContext(),"No tienes gastos de este mes",Toast.LENGTH_LONG).show();
+            Toast.makeText(this.getContext(),"No tienes gastos de este mes",Toast.LENGTH_LONG).show();
             gastos = new ArrayList<>();
         } else {
             for (Map.Entry<String, Boolean> entry : movimiento.entrySet()) {
