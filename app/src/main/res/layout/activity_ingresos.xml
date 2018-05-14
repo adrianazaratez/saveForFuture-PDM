@@ -13,63 +13,59 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="INGRESOS DISPONIBLES:"
+        android:text="SALARIO:"
         android:textStyle="bold"
         android:textSize="23dp"
         android:layout_gravity="center"
         android:textAlignment="center"/>
 
     <TextView
-        android:id="@+id/activity_ingresos_ingreso"
+        android:id="@+id/activity_ingresos_salario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="23dp"
-        android:text="40000"
         android:layout_gravity="center"
         android:textAlignment="center" />
 
     <EditText
-        android:id="@+id/nuevo_ingreso"
+        android:id="@+id/activity_ingresos_cantidad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:hint="Ingrese cantidad a abonar" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        android:weightSum="1">
+        android:layout_marginTop="20dp"
+        android:text="¿A qué meta quieres abonar tu ingreso?"/>
 
-        <Button
-            android:id="@+id/activity_ingresos_btningreso"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Añadir ingresos"
-            android:textSize="23dp"
-            android:drawableLeft="@android:drawable/ic_menu_add"
-            android:background="#699CFC"
-            android:textColor="#FFFFFF"
-            android:layout_margin="10dp"
-            android:layout_weight=".5"/>
+    <Spinner
+        android:id="@+id/activity_ingresos_meta"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:tag="Meta a abonar"
+        android:entries="@array/metas"
+        android:layout_marginBottom="20dp">
+    </Spinner>
 
         <Button
             android:id="@+id/activity_ingresos_btnahorro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Añadir ahorros"
-            android:textSize="23dp"
+            android:text="Añadir ahorro "
+            android:textSize="20dp"
             android:drawableLeft="@android:drawable/ic_menu_add"
             android:background="#699CFC"
             android:textColor="#FFFFFF"
-            android:layout_margin="10dp"
-            android:layout_weight=".5"/>
+            android:layout_gravity="center"
+            android:textAlignment="center"
+          />
 
-    </LinearLayout>
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
         android:src="@drawable/billete" />
 
 </LinearLayout>

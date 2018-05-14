@@ -16,10 +16,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.TextureView;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.adriana.piggybank_moviles.beans.Meta;
+import com.example.adriana.piggybank_moviles.beans.Movimiento;
 import com.example.adriana.piggybank_moviles.beans.Usuario;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,26 +34,35 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ActivityIngresos extends AppCompatActivity {
 
     DatabaseReference databaseReference;
 
-    TextView ingresos;
+    TextView salario;
     EditText nuevoingreso;
-    Button addIngresos, addAhorros;
-
+    Button addAhorros;
+    Spinner abonoMeta;
+    ArrayList<Usuario> usersList = new ArrayList<>();
+    ArrayList<String> userIDList = new ArrayList<>();
+    ArrayList<Meta> metasList = new ArrayList<>();
+    ArrayList<String> metasIDList = new ArrayList<>();
     String id;
+    Meta metaAux = new Meta();
+    String idMeta="";
+    double cantidadAbono =0, acumulado =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingresos);
-        ingresos = findViewById(R.id.activity_ingresos_ingreso);
-        addIngresos = findViewById(R.id.activity_ingresos_btningreso);
+        salario = findViewById(R.id.activity_ingresos_salario);
         addAhorros = findViewById(R.id.activity_ingresos_btnahorro);
-        nuevoingreso = findViewById(R.id.nuevo_ingreso);
+        nuevoingreso = findViewById(R.id.activity_ingresos_cantidad);
+        abonoMeta = findViewById(R.id.activity_ingresos_meta);
+      //  nuevoingreso.setText("0");
 
         id = getIntent().getExtras().getString("ID");
 
@@ -61,27 +75,49 @@ public class ActivityIngresos extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String value = dataSnapshot.getValue(String.class);
-                Log.d("FIREBASE", "Value is: " + value);
-                ingresos.setText(value);
+                usersList.clear();
+                userIDList.clear();
+                metasList.clear();
+                metasIDList.clear();
+                for(DataSnapshot snapshot : dataSnapshot.child("user").getChildren()){
+                    Usuario value = snapshot.getValue(Usuario.class);
+                    String ids = snapshot.getKey();
+                    usersList.add(value);
+                    userIDList.add(ids);
+                }
+                for(DataSnapshot snapshot : dataSnapshot.child("meta").getChildren()){
+                    Meta value = snapshot.getValue(Meta.class);
+                    String ids = snapshot.getKey();
+                    metasList.add(value);
+                    metasIDList.add(ids);
+                }
+                doThings();
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
 
-        addAhorros.setOnClickListener(new View.OnClickListener() {
+       addAhorros.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Usuario usuario = new Usuario();
-                usuario.setSalario((long) Integer.parseInt(ingresos.getText().toString()+nuevoingreso.getText().toString()));
-                String userId = databaseReference.child("user").push().getKey();
-                databaseReference.child("user").child(userId).setValue(usuario);
+                //sumar en Metas
 
-                Map<String,Object> movi = new HashMap<>();
-                movi.put(userId,true);
-                databaseReference.child("user").child(id).child("salario").updateChildren(movi);
-                //showDialog();
+                if(nuevoingreso.getText() != null || nuevoingreso.getText().equals("")){
+                    cantidadAbono = Double.parseDouble(nuevoingreso.getText().toString());
+                }
+                Log.e("idMeta:", idMeta);
+                for(int b = 0; b < nameMeta.length; b++){
+                    //comparar la meta con el nombre
+                    if (nameMeta[b].equals(abonoMeta.getSelectedItem().toString())){
+                       acumulado = metax.get(b).getAhorrado()+cantidadAbono;
+                       idMeta = idMetas[b];
+                       Log.e("acumulado:", acumulado+"");
+                        Log.e("idMeta:", idMeta);
+                    }
+                }
+                databaseReference.child("meta").child(idMeta).child("ahorrado").setValue(acumulado);
 
                 Intent intent = new Intent(ActivityIngresos.this, ActivityMenu.class);
                 intent.putExtra("ID",id);
@@ -89,25 +125,57 @@ public class ActivityIngresos extends AppCompatActivity {
                 finish();
             }
         });
-        addIngresos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Usuario usuario = new Usuario();
-                usuario.setSalario((long) Integer.parseInt(ingresos.getText().toString()+nuevoingreso.getText().toString()));
-                String userId = databaseReference.child("user").push().getKey();
-                databaseReference.child("user").child(userId).setValue(usuario);
 
-                Map<String,Object> movi = new HashMap<>();
-                movi.put(userId,true);
-                databaseReference.child("user").child(id).child("salario").updateChildren(movi);
-                //showDialog();
+    }
 
-                Intent intent = new Intent(ActivityIngresos.this, ActivityMenu.class);
-                intent.putExtra("ID",id);
-                startActivity(intent);
-                finish();
+    Usuario user;
+    HashMap<String,Boolean> meta;
+    ArrayList<Meta> metax = new ArrayList<>();
+    String[] nameMeta, idMetas;
+
+    public void doThings(){
+    float salary = 0f;
+
+        for(int i = 0; i < userIDList.size(); i++) {
+            if (id.equals(userIDList.get(i))) {
+                user = usersList.get(i);
+                Log.e("USUARIO ACTUAL:",user.toString());
+                break;
             }
-        });
+        }
+
+        meta = user.getMeta();
+        int aux=0;
+        idMetas = new String[meta.entrySet().size()];
+        if(user.getMeta() == null) {
+            Toast.makeText(this,"No tienes metas a las que abonar",Toast.LENGTH_LONG).show();
+            }
+            else {
+            salary = user.getSalario().floatValue();
+            for (Map.Entry<String, Boolean> entry : meta.entrySet()) {
+                String key = entry.getKey();
+                for (int i = 0; i < metasIDList.size(); i++) {
+                    if (key.equals(metasIDList.get(i))) {
+                        metax.add(metasList.get(i));
+                        Log.e("metasList Name: ", metasList.get(i).getNombre() + metasList.get(i).getId());
+                        // break;
+                        idMetas[aux]= metasIDList.get(i);
+                        Log.e("metasIDList: ", metasIDList.get(i).toString());
+                        aux++;
+                    }
+                }
+            }
+        }
+        Log.e("metax: ", metax.toString());
+        nameMeta= new String[metax.size()];
+        for (int i = 0; i < metax.size(); i++) {
+            nameMeta[i] = metax.get(i).getNombre();
+        }
+
+        salario.setText("$"+salary);
+        ArrayAdapter<String> metaAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,nameMeta);
+        metaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        abonoMeta.setAdapter(metaAdapter);
     }
 
     @Override

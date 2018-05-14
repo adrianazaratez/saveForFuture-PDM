@@ -98,7 +98,7 @@ public class ActivityMetas extends AppCompatActivity {
                 Intent intent = new Intent(ActivityMetas.this, ActivityNewgoal.class);
                 intent.putExtra("ID",id);
                 startActivity(intent);
-                finish();
+
             }
         });
 
@@ -117,7 +117,6 @@ public class ActivityMetas extends AppCompatActivity {
             Toast.makeText(this, "No tienes metas registradas", Toast.LENGTH_LONG).show();
         }
         else {
-
             for(Map.Entry<String,Boolean>entry : meta.entrySet()){
                 String key = entry.getKey();
                 for(int i = 0; i < fbmetaIDList.size(); i++) {

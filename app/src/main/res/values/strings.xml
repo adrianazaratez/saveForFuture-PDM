@@ -10,6 +10,10 @@
     <string name="accept">Aceptar</string>
     <string name="cancel">Cancelar</string>
 
+    <string-array name="metas">
+        <item>No hay metas a las que abonar</item>
+    </string-array>
+
     <string-array name="goals">
         <item>Comida</item>
         <item>Transporte</item>

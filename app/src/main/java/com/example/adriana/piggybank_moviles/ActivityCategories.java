@@ -161,9 +161,9 @@ public class ActivityCategories extends AppCompatActivity{
                 usuario.setCategoria(categoria);
 
                 Log.e("USUARIO",usuario.toString());
-
                 String userId = databaseReference.child("user").push().getKey();
                 databaseReference.child("user").child(userId).setValue(usuario);
+
 
                 Toast.makeText(ActivityCategories.this,"Se creó el perfil",Toast.LENGTH_LONG).show();
 
