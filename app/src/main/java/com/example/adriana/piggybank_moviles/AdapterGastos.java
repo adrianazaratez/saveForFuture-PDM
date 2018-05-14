@@ -1,19 +1,17 @@
 package com.example.adriana.piggybank_moviles;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-
-/**
- * Created by Mariana Salas on 05/04/2018.
- */
 
 public class AdapterGastos extends RecyclerView.Adapter<AdapterGastos.ViewHolder>{
     private ArrayList<itemGasto> mDataSet = null;
@@ -41,6 +39,7 @@ public class AdapterGastos extends RecyclerView.Adapter<AdapterGastos.ViewHolder
         public ImageView mProductImage;
         public RelativeLayout mEventLayout;
         public TextView mMonto;
+        public ProgressBar mProgress;
 
         public ViewHolder(View v) {
             super(v);
@@ -48,11 +47,13 @@ public class AdapterGastos extends RecyclerView.Adapter<AdapterGastos.ViewHolder
             mProductTitle = (TextView) v.findViewById(R.id.item_gasto_name);
             mProductImage = (ImageView) v.findViewById(R.id.item_gasto_image);
             mMonto = (TextView) v.findViewById(R.id.item_gasto_progressBar);
+            mProgress = (ProgressBar) v.findViewById(R.id.progressBar2);
         }}
     @Override
     public void onBindViewHolder(AdapterGastos.ViewHolder holder, int position) {
         holder.mProductTitle.setText(mDataSet.get(position).getName());
-        holder.mMonto.setText(mDataSet.get(position).getMonto() + ".00 $");
+        holder.mMonto.setText("$" + mDataSet.get(position).getMonto());
+        holder.mProgress.setProgress(mDataSet.get(position).getProgress());
         switch(mDataSet.get(position).getImage()){
             case 0:
                 holder.mProductImage.setImageResource(R.drawable.comida); break;
@@ -78,5 +79,15 @@ public class AdapterGastos extends RecyclerView.Adapter<AdapterGastos.ViewHolder
     @Override
     public int getItemCount() {
         return mDataSet.size();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 }
